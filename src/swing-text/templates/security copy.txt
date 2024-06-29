@@ -1,0 +1,34 @@
+# Acknowledgments
+# Our acknowledgments page where security researchers are recognized for their reports:
+Acknowledgments: https://www.scape.agency/security-acknowledgments.html
+
+# Canonical
+# The canonical URIs where the security.txt file is located:
+Canonical: https://www.scape.agency/.well-known/security.txt
+Canonical: https://www.scape.agency/security.txt
+
+# Contact
+# The contact details that researchers should use for reporting security vulnerabilities:
+Contact: mailto:info@scape.agency
+Contact: tel:+316-24-65-09-95
+Contact: https://www.scape.agency/security-contact.html
+
+# Encryption
+# Our OpenPGP encryption key that security researchers should use for encrypted communication:
+Encryption: https://www.scape.agency/pgp-key.txt
+
+# Expires
+# the date and time after which the data contained in this "security.txt" file is considered stale and should not be used
+Expires: Thu, 31 Dec 2020 18:37:07 -0800
+
+# Hiring
+# Link to our possible security-related job positions:
+Hiring: https://www.scape.agency/careers.html
+
+# Policy
+# Link to our  security policy:
+Policy: https://www.scape.agency/security-policy.html
+
+# Preferred-Languages
+# Natural languages that are preferred when submitting security reports:
+Preferred-Languages: en, nl

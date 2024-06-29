@@ -1,0 +1,92 @@
+{
+    "meta": {
+        "coverage":         "Worldwide",
+        "distribution":     "Global",
+        "rating":           "general",
+        "directory":        "submission",
+        "category":         "",
+        "medium":           "",
+        "classification":   "Business",
+        "language":         "English",
+        "standards":        ["HTML5", "CSS3", "Javascript"],
+        "components":       ["Bootstrap", "JQuery"],
+        "software":         ["Python"]
+    },
+    "tags": {
+        "ama_id":           "",
+        "gsc_token":        "",
+        "gan_tag":          "UA-157968640-1",
+        "gas_tag":          "",
+        "gas_txt":          "",
+        "gas_seller_id":    "",
+        "gas_seller_type":  "",
+        "gas_customer_id":  "",
+        "pin_tag":          ""
+    },
+    "form": {
+        "contact": 
+        {
+            "name":         "Contact",
+            "form_id":      "1KqB-wco2XBmlrN-u7a5SC3dYcaYn8at_9D9E8BYvN48",
+            "fields" :       [
+                {
+                    "name":         "Name",
+                    "type":         "TEXT",
+                    "label":        "",
+                    "value":        "",
+                    "placeholder":  "",
+                    "required":     true,
+                    "field_id":     "841380781",
+                    "entry_id":     "1959212856"
+                },
+                {
+                    "name":         "Email",
+                    "type":         "TEXT",
+                    "label":        "",
+                    "value":        "",
+                    "placeholder":  "",
+                    "required":     true,
+                    "field_id":     "1726358591",
+                    "entry_id":     "934054986"
+                },
+                {
+                    "name":         "Subject",
+                    "type":         "TEXT",
+                    "label":        "",
+                    "value":        "",
+                    "placeholder":  "",
+                    "required":     true,
+                    "field_id":     "1926073414",
+                    "entry_id":     "943849977"
+                },
+                {
+                    "name":         "Message",
+                    "type":         "PARAGRAPH_TEXT",
+                    "label":        "",
+                    "value":        "",
+                    "placeholder":  "",
+                    "required":     true,
+                    "field_id":     "1637481045",
+                    "entry_id":     "281284498"
+                }
+            ]
+        },
+        "newsletter":
+        {
+            "name":         "Newsletter",
+            "form_id":      "17u6f8LSNhybLujl8S1xlP6z7rVFSeq0znEFQOnoqitQ",
+            "fields" :      [
+                {
+                    "name":         "Email",
+                    "type":         "TEXT",
+                    "label":        "",
+                    "value":        "",
+                    "placeholder":  "",
+                    "required":     true,
+                    "field_id":     "1448132877",
+                    "entry_id":     "17724438"
+                }
+            ]
+        }
+    }
+}
