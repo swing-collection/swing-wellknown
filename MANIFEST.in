@@ -1,0 +1,3 @@
+include README.md
+recursive-include src/swing_wellknown/static *
+recursive-include src/swing_wellknown/templates *
