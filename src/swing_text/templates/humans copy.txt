@@ -1,0 +1,64 @@
+# humanstxt.org/
+
+
+/* TEAM */
+
+    Developer:      Lars van Vianen
+    Site:           www.scape.agency
+    Email:          info@scape.agency
+    Twitter:        @larsvanvianen
+    Location:       Amsterdam, Netherlands
+
+
+/* THANKS */
+
+
+                            
+/* SITE */
+
+    Last Update:    2020/07/01
+    Languages:      English
+    Standards:      HTML5, CSS3, Javascript
+    Components:     Normalize, Modernizr
+    Software:       
+
+
+# humanstxt.org/
+
+
+/* TEAM */
+
+{% if developer is defined -%}
+    Developer:      {{ developer }}
+{%- endif %}
+    Site:           {{ site_contact.site_url }}
+    Email:          {{ site_contact.site_email }}
+    Twitter:        {{ site_social_twitter }}
+    Location:       {{ site_location }}
+
+
+/* THANKS */
+
+
+                            
+/* SITE */
+
+    Last Update:    {{ date_us_simple }}
+    Languages:      {{ site_meta.site_meta_language }}
+    Standards:      {% for item in site_meta.site_meta_dev_standards %}{{ item }}{% if not loop.last %}, {% endif %}{% endfor %}
+    Components:     {% for item in site_meta.site_meta_dev_components %}{{ item }}{% if not loop.last %}, {% endif %}{% endfor %}
+    Software:       {% for item in site_meta.site_meta_dev_software %}{{ item }}{% if not loop.last %}, {% endif %}{% endfor %}
+
+
+
+/* SITE INFORMATION */
+
+	Site name:  Perishable Press
+	Site URL:   https://perishablepress.com/
+	Web design: Jeff Starr @ Monzilla Media
+	About.me:   https://about.me/jeffstarr
+	Twitter:    https://twitter.com/perishable
+	Contact:    https://perishablepress.com/contact/
+	Location:   USA
+	Built with: WordPress, PHP, HTML, CSS, JavaScript, XML, SQL, .htaccess
+	Launched:   2005
