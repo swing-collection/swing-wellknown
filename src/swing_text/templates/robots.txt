@@ -1,0 +1,17 @@
+# www.robotstxt.org/
+
+# Allow crawling of all content
+User-agent: *
+Disallow:
+
+
+
+SITEMAP: http://www.scape.agency/sitemap.xml
+
+
+
+
+User-agent: *
+Allow: /
+
+Sitemap: {{ site_contact.site_url }}sitemap.xml
