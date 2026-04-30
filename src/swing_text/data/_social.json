@@ -2,62 +2,62 @@
     "social": [
         {
             "service": "500px",
-            "profile": "https://www.500px.com/p/starling-cloud",
+            "profile": "https://www.500px.com/p/example",
             "active" :  false
         },
         {
             "service": "AngelList",
-            "profile": "https://www.angel.co/starling-cloud",
+            "profile": "https://www.angel.co/example",
             "active" :  false
         },
         {
             "service": "Archinect",
-            "profile": "https://archinect.com/starling_associates",
+            "profile": "https://archinect.com/example",
             "active" :  false
         },
         {
             "service": "Crunchbase",
-            "profile": "https://www.crunchbase.com/organization/starling-cloud",
+            "profile": "https://www.crunchbase.com/organization/example",
             "active" :  false
         },
         {
             "service" : "Facebook",
-            "profile" : "https://www.facebook.com/starlingclouds",
+            "profile" : "https://www.facebook.com/example",
             "active" :  true
         },
         {
             "service": "Figma",
-            "profile": "https://www.figma.com/@starling",
+            "profile": "https://www.figma.com/@example",
             "active" :  false
         },
         {
             "service": "GitHub",
-            "profile": "https://www.github.com/starling-associates",
+            "profile": "https://www.github.com/example",
             "active" :  true
         },
         {
             "service": "Instagram",
-            "profile": "https://www.instagram.com/starling.cloud",
+            "profile": "https://www.instagram.com/example",
             "active" :  true
         },
         {
             "service": "Issuu",
-            "profile": "https://www.issuu.com/starlingcloud",
+            "profile": "https://www.issuu.com/example",
             "active" :  false
         },
         {
             "service": "LinkedIn",
-            "profile": "https://www.linkedin.com/company/starling-associates/",
+            "profile": "https://www.linkedin.com/company/example/",
             "active" :  true
         },
         {
             "service": "Pinterest",
-            "profile": "https://www.pinterest.com/starlingcloud/",
+            "profile": "https://www.pinterest.com/example/",
             "active" :  false
         },
         {
             "service": "Vimeo",
-            "profile": "https://www.vimeo.com/starlingcloud",
+            "profile": "https://www.vimeo.com/example",
             "active" :  true
         }
     ]

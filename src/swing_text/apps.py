@@ -23,7 +23,6 @@ Links:
 # =============================================================================
 
 # Import | Standard Library
-from typing import Dict, List, Union
 
 
 # Import | Libraries
@@ -45,9 +44,8 @@ class TextsConfig(AppConfig):
     """
 
 
-
     # Full Python path to the application
-    name = "website.texts"
+    name = "swing_text"
 
     # Short name for the application
     label = "texts"
@@ -67,7 +65,7 @@ class TextsConfig(AppConfig):
     #     """
     #     Apps Config Ready Function
     #     """
-        
+
         # Implicitly connect signal handlers decorated with @receiver.
         # from .. import signals
 

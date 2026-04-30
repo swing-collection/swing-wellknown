@@ -3,17 +3,17 @@
     "short_name": "Starling",
     "icons": [
         {
-            "src": "https://www.starling.associates/static/favicon/apple-touch-icon-72x72.png",
+            "src": "https://www.example.com/static/favicon/apple-touch-icon-72x72.png",
             "sizes": "72x72",
             "type": "image/png"
         },
         {
-            "src": "https://www.starling.associates/static/favicon/favicon-96x96.png",
+            "src": "https://www.example.com/static/favicon/favicon-96x96.png",
             "sizes": "96x96",
             "type": "image/png"
         },
         {
-            "src": "https://www.starling.associates/static/favicon/apple-touch-icon-144x144.png",
+            "src": "https://www.example.com/static/favicon/apple-touch-icon-144x144.png",
             "sizes": "144x144",
             "type": "image/png"
         }

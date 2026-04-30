@@ -25,14 +25,13 @@ Links:
 # =============================================================================
 
 # Import | Standard Library
-from typing import List, Union
+
 
 # Import | Libraries
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import path
 from django.urls.resolvers import URLPattern, URLResolver
 from django.utils.translation import gettext as _
-from django.views.generic.base import TemplateView
 from django.views.generic.base import RedirectView
 
 # Import | Local Modules
@@ -43,7 +42,7 @@ from ..views import text_view
 # =============================================================================
 
 # Export
-__all__: List[str] = ["app_name", "urlpatterns"]
+__all__: list[str] = ["app_name", "urlpatterns"]
 
 # App Name
 app_name = "texts"
@@ -54,7 +53,7 @@ favicon_view = RedirectView.as_view(
 )
 
 # URL Patterns
-urlpatterns: List[Union[URLPattern, URLResolver]] = [
+urlpatterns: list[URLPattern | URLResolver] = [
 
     path(
         "business.txt",
@@ -132,6 +131,51 @@ urlpatterns: List[Union[URLPattern, URLResolver]] = [
         name = "license"
     ),
 
+    # Ads & Trust
+    path(
+        "ads.txt",
+        text_view(
+            template_name   = "ads.txt.jinja",
+            content_type    = "text/plain",
+        ),
+        name = "ads"
+    ),
+    path(
+        "trust.txt",
+        text_view(
+            template_name   = "trust.txt.jinja",
+            content_type    = "text/plain",
+        ),
+        name = "trust"
+    ),
+    path(
+        "earth.txt",
+        text_view(
+            template_name   = "earth.txt.jinja",
+            content_type    = "text/plain",
+        ),
+        name = "earth"
+    ),
+
+    # Contact formats
+    path(
+        "contact.vcard",
+        text_view(
+            template_name   = "contact.vcard.jinja",
+            content_type    = "text/vcard",
+        ),
+        name = "contact-vcard"
+    ),
+    path(
+        "contact.ldif",
+        text_view(
+            template_name   = "contact.ldif.jinja",
+            content_type    = "text/plain",
+        ),
+        name = "contact-ldif"
+    ),
+
+    # Web manifests
     path(
         "manifest.webmanifest",
         text_view(
@@ -140,14 +184,14 @@ urlpatterns: List[Union[URLPattern, URLResolver]] = [
         ),
         name = "manifest"
     ),
-    # path(
-    #     "manifest.json",
-    #     TemplateView.as_view(
-    #         template_name   = "manifest.webmanifest",
-    #         content_type    = "application/manifest+json",
-    #     ),
-    #     name = "manifest"
-    # ),
+    path(
+        "manifest.json",
+        text_view(
+            template_name   = "manifest.webmanifest",
+            content_type    = "application/manifest+json",
+        ),
+        name = "manifest-json"
+    ),
     path(
         "browserconfig.xml",
         text_view(
