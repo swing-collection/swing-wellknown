@@ -18,16 +18,16 @@ Provides Text Template View Class.
 # =============================================================================
 
 # Import | Standard Library
-import json
 from datetime import datetime
-from pathlib import Path
 from typing import Any
 
 # Import | Libraries
 from django.views.generic.base import TemplateView
 
 # Import | Local Modules
-from ..helpers.helper_json import read_json
+from .loader_brand import load_brand_data
+from .loader_meta import load_meta_data
+from .loader_social import load_social_data
 
 
 # =============================================================================
@@ -35,38 +35,6 @@ from ..helpers.helper_json import read_json
 # =============================================================================
 
 __all__: list[str] = ["text_view",]
-
-
-# =============================================================================
-# Data Loading
-# =============================================================================
-
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
-
-
-def load_brand_data() -> dict[str, Any]:
-    """Load brand data from JSON file."""
-    try:
-        return read_json(DATA_DIR / "_brand.json")
-    except (FileNotFoundError, json.JSONDecodeError):
-        return {}
-
-
-def load_social_data() -> list[dict[str, Any]]:
-    """Load social media data from JSON file."""
-    try:
-        data = read_json(DATA_DIR / "_social.json")
-        return data.get("social", [])
-    except (FileNotFoundError, json.JSONDecodeError):
-        return []
-
-
-def load_meta_data() -> dict[str, Any]:
-    """Load metadata from JSON file."""
-    try:
-        return read_json(DATA_DIR / "_meta.json")
-    except (FileNotFoundError, json.JSONDecodeError):
-        return {}
 
 
 # =============================================================================

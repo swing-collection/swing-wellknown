@@ -81,10 +81,13 @@ extension-pkg-allow-list=pydantic,lxml
 # Install: poetry add pylint-django --group dev
 # Comment out if not a Django project.
 #
+# Note: Disabled by default for IDE compatibility. Enable when running pylint
+# directly with: pylint --load-plugins=pylint_django src/
+#
 # =============================================================================
 
-load-plugins=pylint_django
-django-settings-module=settings
+# load-plugins=pylint_django
+# django-settings-module=settings
 
 
 # =============================================================================
@@ -108,7 +111,6 @@ disable=
     C0115,  # missing-class-docstring: Not all classes need docstrings
     C0116,  # missing-function-docstring: Not all functions need docstrings
     C0301,  # line-too-long: Handled by black/flake8
-    C0415,  # import-outside-toplevel: Sometimes needed for lazy imports
 
     # Refactor (R) - Code smells
     R0801,  # duplicate-code: Too many false positives
@@ -393,9 +395,6 @@ min-public-methods=0
 # =============================================================================
 
 [IMPORTS]
-
-# Allow from module import * if __all__ is defined
-allow-wildcard-with-all=no
 
 # Analyze fallback import blocks (try/except ImportError)
 analyse-fallback-blocks=no

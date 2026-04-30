@@ -1,0 +1,16 @@
+{
+    "version": "0.2",
+    "language": "en",
+    "words": [
+        "wellknown",
+        "vcard",
+        "ldif",
+        "webmanifest",
+        "browserconfig",
+        "jinja",
+        "urlpatterns",
+        "urlconf",
+        "staticfiles"
+    ],
+    "ignorePaths": ["**/__pycache__/**", "**/migrations/**", "*.lock"]
+}
