@@ -5,5 +5,5 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("swing_text.urls.urls_texts")),
+    path("", include("swing.wellknown.urls.urls_texts")),
 ]

@@ -49,7 +49,7 @@ documentation = "https://github.com/swing-collection/swing-wellknown/tree/dev/do
 
 [tool.poetry]
 package-mode = true
-packages = [{ include = "swing_text", from = "src" }]
+packages = [{ include = "swing", from = "src" }]
 
 
 # =============================================================================

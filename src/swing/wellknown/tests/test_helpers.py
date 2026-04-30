@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pytest
 
-from swing_text.helpers.helper_json import read_file, read_json, write_file, write_json
+from swing.wellknown.helpers.helper_json import read_file, read_json, write_file, write_json
 
 
 class TestReadFile:

@@ -9,13 +9,7 @@
 Provides Texts URL Config
 ========================
 
-...
 
-Todo:
------
-
-Links:
-------
 
 """
 

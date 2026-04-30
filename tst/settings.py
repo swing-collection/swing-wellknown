@@ -17,7 +17,7 @@ INSTALLED_APPS: list[str] = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "swing_text.apps.TextsConfig",
+    "swing.wellknown.apps.TextsConfig",
 ]
 
 MIDDLEWARE: list[str] = [
@@ -31,10 +31,10 @@ ROOT_URLCONF = "tst.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.jinja2.Jinja2",
-        "DIRS": [],
-        "APP_DIRS": True,
+        "DIRS": [BASE_DIR / "src" / "swing" / "wellknown" / "templates"],
+        "APP_DIRS": False,
         "OPTIONS": {
-            "environment": "swing_text.jinja2.environment",
+            "environment": "swing.wellknown.jinja2.environment",
         },
     },
     {
@@ -76,3 +76,16 @@ EMAIL_HOST = "localhost"
 EMAIL_PORT = 25
 SITEMAP_URL = "http://example.com/sitemap.xml"
 BAIDU_API_TOKEN = "test-token"
+
+# swing-cookie consent settings
+COOKIE_CONSENT_NAME = "cookie_consent"
+COOKIE_CONSENT_MAX_AGE = 31536000
+COOKIE_CONSENT_DOMAIN: str | None = None
+COOKIE_CONSENT_SECURE = False
+COOKIE_CONSENT_HTTPONLY = True
+COOKIE_CONSENT_SAMESITE = "Lax"
+COOKIE_CONSENT_DECLINE = "declined"
+COOKIE_CONSENT_OPT_OUT = False
+COOKIE_CONSENT_LOG_ENABLED = False
+COOKIE_CONSENT_ENABLED = True
+COOKIE_CONSENT_CACHE_BACKEND = "default"

@@ -8,13 +8,7 @@
 """
 Provides Text Template View Class.
 
-...
 
-Todo:
------
-
-Links:
-------
 
 """
 

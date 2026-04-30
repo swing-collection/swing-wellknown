@@ -7,13 +7,7 @@
 """
 Provides Texts Config Class
 ==========================
-...
 
-Todo:
------
-
-Links:
-------
 
 """
 
@@ -45,10 +39,10 @@ class TextsConfig(AppConfig):
 
 
     # Full Python path to the application
-    name = "swing_text"
+    name = "swing.wellknown"
 
     # Short name for the application
-    label = "texts"
+    label = "wellknown"
 
     # Human-readable name for the application
     verbose_name = _("Texts")
