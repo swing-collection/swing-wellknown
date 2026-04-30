@@ -1,0 +1,107 @@
+# Acknowledgments
+# Contributors and credits for this project
+{%- if site is defined %}
+# {{ site.name_long | default(site.name, true) }} Acknowledgments
+{%- endif %}
+
+# =============================================================================
+# Team
+# =============================================================================
+
+{%- if acknowledgments is defined and acknowledgments.team is defined %}
+{%- for member in acknowledgments.team %}
+{{ member.role | default('Team Member') }}: {{ member.name }}
+{%- if member.contact is defined %}
+  Contact: {{ member.contact }}
+{%- endif %}
+{%- endfor %}
+{%- elif developer is defined and developer|length > 0 %}
+Lead Developer: {{ developer }}
+{%- else %}
+Team members listed on our website.
+{%- endif %}
+
+# =============================================================================
+# Technologies
+# =============================================================================
+
+{%- if acknowledgments is defined and acknowledgments.technologies is defined %}
+{%- for tech in acknowledgments.technologies %}
+- {{ tech.name }}{% if tech.description is defined %} - {{ tech.description }}{% endif %}
+
+{%- endfor %}
+{%- elif meta is defined and meta.meta is defined %}
+This website is built with:
+{%- if meta.meta.software is defined %}
+{%- for sw in meta.meta.software %}
+- {{ sw }}
+{%- endfor %}
+{%- endif %}
+{%- if meta.meta.standards is defined %}
+{%- for std in meta.meta.standards %}
+- {{ std }}
+{%- endfor %}
+{%- endif %}
+{%- if meta.meta.components is defined %}
+{%- for comp in meta.meta.components %}
+- {{ comp }}
+{%- endfor %}
+{%- endif %}
+{%- else %}
+This website is built with:
+- Django - Python web framework
+- Jinja2 - Template engine
+- HTML5/CSS3 - Frontend standards
+{%- endif %}
+
+# =============================================================================
+# Third-Party Resources
+# =============================================================================
+
+{%- if acknowledgments is defined and acknowledgments.third_party is defined %}
+{%- for resource in acknowledgments.third_party %}
+- {{ resource.name }}{% if resource.url is defined %}: {{ resource.url }}{% endif %}{% if resource.license is defined %} ({{ resource.license }}){% endif %}
+
+{%- endfor %}
+{%- else %}
+We acknowledge the use of:
+- Open source software and libraries
+- Public APIs and services
+- Community contributions
+{%- endif %}
+
+# =============================================================================
+# Special Thanks
+# =============================================================================
+
+{%- if acknowledgments is defined and acknowledgments.thanks is defined %}
+{%- for person in acknowledgments.thanks %}
+- {{ person.name }}{% if person.reason is defined %} - {{ person.reason }}{% endif %}
+
+{%- endfor %}
+{%- else %}
+We extend our gratitude to:
+- Our users and community
+- Open source contributors
+- Technology partners
+{%- endif %}
+
+# =============================================================================
+# Contact
+# =============================================================================
+
+{%- if site_contact is defined %}
+{%- if site_contact.url is defined %}
+Website: {{ site_contact.url }}
+{%- endif %}
+{%- if site_contact.email is defined %}
+Email: {{ site_contact.email }}
+{%- endif %}
+{%- endif %}
+
+---
+{%- if acknowledgments is defined and acknowledgments.last_updated is defined %}
+Last updated: {{ acknowledgments.last_updated }}
+{%- else %}
+Last updated: {{ current_year }}
+{%- endif %}

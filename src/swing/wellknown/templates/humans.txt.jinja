@@ -1,43 +1,83 @@
 # humanstxt.org/
-
+# The humans responsible for this site
 
 /* TEAM */
 
-    Developer:      Lars van Vianen
-    Site:           www.scape.press
-    Email:          info@scape.press
-    Twitter:        @larsvanvianen
-    Location:       Amsterdam, Netherlands
+{%- if team is defined and team|length > 0 %}
+{%- for member in team %}
+    {{ member.role | default("Team Member") }}: {{ member.name }}
+{%- if member.site is defined %}
+    Site: {{ member.site }}
+{%- endif %}
+{%- if member.email is defined %}
+    Email: {{ member.email }}
+{%- endif %}
+{%- if member.twitter is defined %}
+    Twitter: {{ member.twitter }}
+{%- endif %}
+{%- if member.location is defined %}
+    Location: {{ member.location }}
+{%- endif %}
 
+{%- endfor %}
+{%- else %}
+{%- if developer is defined %}
+    Developer: {{ developer }}
+{%- endif %}
+{%- if site_contact is defined %}
+{%- if site_contact.url is defined %}
+    Site: {{ site_contact.url }}
+{%- endif %}
+{%- if site_contact.email is defined %}
+    Email: {{ site_contact.email }}
+{%- endif %}
+{%- endif %}
+{%- if site_contact is defined and site_contact.locations is defined and site_contact.locations|length > 0 %}
+    Location: {{ site_contact.locations[0].city }}, {{ site_contact.locations[0].country }}
+{%- endif %}
+
+{%- endif %}
 
 /* THANKS */
 
+{%- if thanks is defined and thanks|length > 0 %}
+{%- for person in thanks %}
+    {{ person.name }}{% if person.note is defined %} - {{ person.note }}{% endif %}
 
+{%- endfor %}
+{%- else %}
+    Our users and community
+    Open source contributors
+
+{%- endif %}
 
 /* SITE */
 
-    Last Update:    2020/07/01
-    Languages:      English
-    Standards:      HTML5, CSS3, Javascript
-    Components:     Normalize, Modernizr
-    Software:
+    Last Update: {{ current_year }}/{{ "%02d" | format(current_month | default(1)) }}/{{ "%02d" | format(current_day | default(1)) }}
+{%- if meta is defined and meta.meta is defined %}
+{%- if meta.meta.language is defined %}
+    Language: {{ meta.meta.language }}
+{%- endif %}
+{%- if meta.meta.standards is defined %}
+    Standards: {{ meta.meta.standards | join(", ") }}
+{%- endif %}
+{%- if meta.meta.components is defined and meta.meta.components|length > 0 %}
+    Components: {{ meta.meta.components | join(", ") }}
+{%- endif %}
+{%- if meta.meta.software is defined and meta.meta.software|length > 0 %}
+    Software: {{ meta.meta.software | join(", ") }}
+{%- endif %}
+{%- else %}
+    Language: English
+    Standards: HTML5, CSS3, JavaScript
+{%- endif %}
 
+/* SOCIAL */
 
-# humanstxt.org/
-
-
-/* TEAM */
-
-
-
-
-
-{%- if developer is defined %}
-    Developer:      {{ developer }}
-{%- endif -%}
-{% if developer is defined %}
-    Developer:      {{ developer }}
-{%- endif -%}
-{% if developer is defined %}
-    Developer:      {{ developer }}
-{%- endif -%}
+{%- if social is defined and social|length > 0 %}
+{%- for account in social %}
+{%- if account.profile is defined and account.profile|length %}
+    {{ account.service }}: {{ account.profile }}
+{%- endif %}
+{%- endfor %}
+{%- endif %}

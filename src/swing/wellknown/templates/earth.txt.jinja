@@ -1,1 +1,78 @@
-Earth.txt
+# earth.txt
+# Environmental and sustainability information
+# See https://earth.txt.org/ for specification
+{%- if site is defined and site.name_long is defined %}
+# {{ site.name_long }}
+{%- endif %}
+
+{%- if earth is defined %}
+# =============================================================================
+# Environmental Commitment
+# =============================================================================
+
+{%- if earth.commitment is defined %}
+{{ earth.commitment }}
+{%- endif %}
+
+{%- if earth.status is defined %}
+Status: {{ earth.status }}
+{%- endif %}
+
+{%- if earth.carbon_neutral is defined %}
+Carbon Neutral: {{ "Yes" if earth.carbon_neutral else "No" }}
+{%- endif %}
+
+{%- if earth.renewable_energy is defined %}
+Renewable Energy: {{ earth.renewable_energy }}%
+{%- endif %}
+
+# =============================================================================
+# Sustainability Goals
+# =============================================================================
+
+{%- if earth.goals is defined %}
+{%- for goal in earth.goals %}
+- {{ goal }}
+{%- endfor %}
+{%- endif %}
+
+# =============================================================================
+# Initiatives
+# =============================================================================
+
+{%- if earth.initiatives is defined %}
+{%- for initiative in earth.initiatives %}
+- {{ initiative }}
+{%- endfor %}
+{%- endif %}
+
+# =============================================================================
+# Reports
+# =============================================================================
+
+{%- if earth.reports is defined %}
+{%- for report in earth.reports %}
+{{ report.year }}: {{ report.url }}
+{%- endfor %}
+{%- endif %}
+
+{%- if earth.contact is defined %}
+
+Sustainability Contact: {{ earth.contact }}
+{%- elif site_contact is defined and site_contact.email is defined %}
+Sustainability Contact: {{ site_contact.email }}
+{%- endif %}
+
+{%- else %}
+# We are committed to environmental sustainability.
+#
+# To add environmental information, set the 'earth' context variable.
+#
+# For more information: https://earth.txt.org/
+{%- if site_contact is defined and site_contact.email is defined %}
+
+Contact: {{ site_contact.email }}
+{%- endif %}
+{%- endif %}
+
+Last updated: {{ current_year }}

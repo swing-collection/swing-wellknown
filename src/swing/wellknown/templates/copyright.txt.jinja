@@ -1,1 +1,41 @@
-Copyright {{ current_year }} {{ site.name_legal }}. All Rights Reserved.
+# Copyright Notice
+{%- if site is defined and site.name_long is defined %}
+# {{ site.name_long }}
+{%- endif %}
+
+{%- if copyright is defined %}
+{%- if copyright.statement is defined %}
+{{ copyright.statement }}
+{%- else %}
+Copyright © {{ copyright.year | default(current_year) }} {{ copyright.holder | default(site.name_legal | default(site.name_long | default(site.name))) }}. All Rights Reserved.
+{%- endif %}
+
+{%- if copyright.license is defined %}
+License: {{ copyright.license }}
+{%- endif %}
+
+{%- if copyright.notice is defined %}
+{{ copyright.notice }}
+{%- endif %}
+{%- else %}
+Copyright © {{ current_year }} {{ site.name_legal | default(site.name_long | default(site.name, true), true) }}. All Rights Reserved.
+{%- endif %}
+
+# =============================================================================
+# Usage
+# =============================================================================
+
+{%- if copyright is defined and copyright.usage is defined %}
+{{ copyright.usage }}
+{%- else %}
+Unauthorized reproduction, distribution, or use of this material is
+prohibited without express written permission from the copyright holder.
+{%- endif %}
+
+{%- if copyright is defined and copyright.permissions_url is defined %}
+For permissions and licensing inquiries: {{ copyright.permissions_url }}
+{%- elif site_contact is defined %}
+{%- if site_contact.email is defined %}
+For permissions and licensing inquiries: {{ site_contact.email }}
+{%- endif %}
+{%- endif %}

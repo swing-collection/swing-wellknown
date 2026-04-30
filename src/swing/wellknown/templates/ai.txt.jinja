@@ -1,0 +1,115 @@
+# ai.txt
+# Guidelines for AI crawlers and agents
+# See https://ai.txt.dev/ for specification
+{%- if site is defined %}
+# {{ site.name_long | default(site.name, true) }}
+{%- endif %}
+
+# =============================================================================
+# User-Agent Directives
+# =============================================================================
+
+{%- if ai is defined and ai.user_agents is defined %}
+{%- for ua in ai.user_agents %}
+User-agent: {{ ua.name }}
+{%- if ua.allow is defined %}
+{%- for path in ua.allow %}
+Allow: {{ path }}
+{%- endfor %}
+{%- endif %}
+{%- if ua.disallow is defined %}
+{%- for path in ua.disallow %}
+Disallow: {{ path }}
+{%- endfor %}
+{%- endif %}
+
+{%- endfor %}
+{%- else %}
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /accounts/
+
+{%- endif %}
+
+# =============================================================================
+# Training Permissions
+# =============================================================================
+
+{%- if ai is defined and ai.training is defined %}
+Training: {{ ai.training }}
+{%- else %}
+Training: allowed
+{%- endif %}
+
+{%- if ai is defined and ai.training_note is defined %}
+# {{ ai.training_note }}
+{%- else %}
+# Allow AI models to train on publicly available content
+{%- endif %}
+
+# =============================================================================
+# Scraping Permissions
+# =============================================================================
+
+{%- if ai is defined and ai.scraping is defined %}
+Scraping: {{ ai.scraping }}
+{%- else %}
+Scraping: allowed
+{%- endif %}
+
+# =============================================================================
+# Summarization Permissions
+# =============================================================================
+
+{%- if ai is defined and ai.summarization is defined %}
+Summarization: {{ ai.summarization }}
+{%- else %}
+Summarization: allowed
+{%- endif %}
+
+# =============================================================================
+# Attribution Requirements
+# =============================================================================
+
+{%- if ai is defined and ai.attribution is defined %}
+Attribution: {{ ai.attribution }}
+{%- else %}
+Attribution: required
+{%- endif %}
+
+# =============================================================================
+# Contact Information
+# =============================================================================
+
+{%- if ai is defined and ai.contact is defined %}
+Contact: {{ ai.contact }}
+{%- elif site_contact is defined and site_contact.email is defined %}
+Contact: mailto:{{ site_contact.email }}
+{%- endif %}
+
+# =============================================================================
+# Rate Limiting
+# =============================================================================
+
+{%- if ai is defined and ai.crawl_delay is defined %}
+Crawl-delay: {{ ai.crawl_delay }}
+{%- else %}
+Crawl-delay: 10
+{%- endif %}
+
+# =============================================================================
+# Preferences
+# =============================================================================
+
+{%- if ai is defined and ai.preferences is defined %}
+{%- for pref in ai.preferences %}
+{{ pref.name }}: {{ pref.value | lower if pref.value is sameas true or pref.value is sameas false else pref.value }}
+{%- endfor %}
+{%- else %}
+Prefer-Summary: true
+Prefer-Facts: true
+Prefer-Attribution: true
+{%- endif %}

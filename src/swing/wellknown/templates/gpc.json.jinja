@@ -1,0 +1,9 @@
+{
+    "gpc": {{ (gpc.enabled | default(true)) | tojson }},
+    "version": {{ gpc.version | default(1) }},
+{%- if gpc is defined and gpc.last_update is defined %}
+    "lastUpdate": "{{ gpc.last_update }}"
+{%- else %}
+    "lastUpdate": "{{ current_year }}-01-01"
+{%- endif %}
+}

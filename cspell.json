@@ -10,7 +10,11 @@
         "jinja",
         "urlpatterns",
         "urlconf",
-        "staticfiles"
+        "staticfiles",
+        "llms",
+        "assetlinks",
+        "patreon",
+        "opencollective"
     ],
     "ignorePaths": ["**/__pycache__/**", "**/migrations/**", "*.lock"]
 }

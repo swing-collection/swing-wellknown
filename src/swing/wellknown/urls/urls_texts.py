@@ -92,21 +92,21 @@ urlpatterns: list[URLPattern | URLResolver] = [
         ),
         name = "hackers"
     ),
-    # path(
-    #     "security.txt",
-    #     text_view(
-    #         template_name   = "security.txt",
-    #         content_type    = "text/plain",
-    #     ),
-    #     name = "security"
-    # ),
+    path(
+        "security.txt",
+        text_view(
+            template_name   = "security.txt.jinja",
+            content_type    = "text/plain",
+        ),
+        name = "security"
+    ),
     path(
         ".well-known/security.txt",
         text_view(
             template_name   = "security.txt.jinja",
             content_type    = "text/plain",
         ),
-        name = "security"  # check
+        name = "security-wellknown"
     ),
     path(
         "pgp-key.txt",
@@ -194,6 +194,87 @@ urlpatterns: list[URLPattern | URLResolver] = [
         ),
         name = "browserconfig"
     ),
+
+    # AI & LLM related
+    path(
+        "llms.txt",
+        text_view(
+            template_name   = "llms.txt.jinja",
+            content_type    = "text/plain",
+        ),
+        name = "llms"
+    ),
+    path(
+        "ai.txt",
+        text_view(
+            template_name   = "ai.txt.jinja",
+            content_type    = "text/plain",
+        ),
+        name = "ai"
+    ),
+
+    # Privacy related
+    path(
+        ".well-known/gpc.json",
+        text_view(
+            template_name   = "gpc.json.jinja",
+            content_type    = "application/json",
+        ),
+        name = "gpc"
+    ),
+    path(
+        ".well-known/dnt-policy.txt",
+        text_view(
+            template_name   = "dnt-policy.txt.jinja",
+            content_type    = "text/plain",
+        ),
+        name = "dnt-policy"
+    ),
+    path(
+        "privacy.txt",
+        text_view(
+            template_name   = "privacy.txt.jinja",
+            content_type    = "text/plain",
+        ),
+        name = "privacy"
+    ),
+
+    # Funding & acknowledgments
+    path(
+        ".well-known/funding.json",
+        text_view(
+            template_name   = "funding.json.jinja",
+            content_type    = "application/json",
+        ),
+        name = "funding"
+    ),
+    path(
+        "acknowledgments.txt",
+        text_view(
+            template_name   = "acknowledgments.txt.jinja",
+            content_type    = "text/plain",
+        ),
+        name = "acknowledgments"
+    ),
+
+    # App linking
+    path(
+        ".well-known/apple-app-site-association",
+        text_view(
+            template_name   = "apple-app-site-association.jinja",
+            content_type    = "application/json",
+        ),
+        name = "apple-app-site-association"
+    ),
+    path(
+        ".well-known/assetlinks.json",
+        text_view(
+            template_name   = "assetlinks.json.jinja",
+            content_type    = "application/json",
+        ),
+        name = "assetlinks"
+    ),
+
     path(
         "favicon.ico",
         favicon_view,

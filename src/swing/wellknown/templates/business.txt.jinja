@@ -1,32 +1,117 @@
+# business.txt
+# Machine-readable business information
+{%- if site is defined and site.name_long is defined %}
+# {{ site.name_long }}
+{%- endif %}
+
+# =============================================================================
+# Business Identity
+# =============================================================================
+
 {%- if site is defined %}
-  {%- if site.name_long is defined -%}
-    Name: {{ site.name_long }}
-  {%- endif %}
-  Categories: American Restaurant, Bar
-  Street: 2056 North Lincoln Park W (at Dickens Ave.)
-  Zip: 60614
-  City: Chicago
-  State: Illinois
-  Country: United States
-  Coordinates: 41.92012, -87.63645
-  Phone: (1) 773-929-5363
-  Price range: $$
-  Price description: $9.95 burger, $11.95 salad and soup bar. You can eat for $10-20.
-  Open: Mon-Fri 11.30am-12am, Sat 10am-12am, Sun 10am-9pm
-  {% if site.summary is defined -%}
-    Short description: {{ site.summary }}
-  {%- endif -%}
+Name: {{ site.name_long | default(site.name, true) }}
+{%- if site.name_legal is defined %}
+Legal Name: {{ site.name_legal }}
+{%- endif %}
+{%- if site.abbr is defined %}
+Abbreviation: {{ site.abbr }}
+{%- endif %}
+{%- endif %}
 
-{% if site_contact is defined %}
+{%- if business is defined %}
+{%- if business.type is defined %}
+Type: {{ business.type }}
+{%- endif %}
+{%- if business.categories is defined %}
+Categories: {{ business.categories | join(", ") }}
+{%- endif %}
+{%- if business.founded is defined %}
+Founded: {{ business.founded }}
+{%- endif %}
+{%- if business.registration_number is defined %}
+Registration Number: {{ business.registration_number }}
+{%- endif %}
+{%- if business.vat_number is defined %}
+VAT Number: {{ business.vat_number }}
+{%- endif %}
+{%- endif %}
+
+# =============================================================================
+# Contact Information
+# =============================================================================
+
+{%- if site_contact is defined %}
+{%- if site_contact.url is defined %}
 Website: {{ site_contact.url }}
-{%- endif -%}
+{%- endif %}
+{%- if site_contact.email is defined %}
+Email: {{ site_contact.email }}
+{%- endif %}
+{%- endif %}
 
-{%- endif -%}
+{%- if site_contact is defined and site_contact.locations is defined %}
+{%- for location in site_contact.locations %}
 
-{%- if social is defined %}
-  {%- for account in social %}
-    {%- if account.profile|length %}
-        {{ account.service }}: {{ account.profile }}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endif -%}
+# Location{% if location.name is defined %}: {{ location.name }}{% endif %}
+
+{%- if location.building is defined %}
+Building: {{ location.building }}
+{%- endif %}
+{%- if location.street is defined %}
+Street: {{ location.street }}{% if location.street_number is defined %} {{ location.street_number }}{% endif %}
+
+{%- endif %}
+{%- if location.postal_code is defined %}
+Postal Code: {{ location.postal_code }}
+{%- endif %}
+{%- if location.city is defined %}
+City: {{ location.city }}
+{%- endif %}
+{%- if location.province is defined %}
+Province: {{ location.province }}
+{%- endif %}
+{%- if location.country is defined %}
+Country: {{ location.country }}
+{%- endif %}
+{%- if location.phone is defined %}
+Phone: {{ location.phone }}
+{%- endif %}
+{%- if location.email is defined %}
+Email: {{ location.email }}
+{%- endif %}
+{%- if location.coordinates is defined %}
+Coordinates: {{ location.coordinates }}
+{%- endif %}
+{%- endfor %}
+{%- endif %}
+
+{%- if business is defined and business.hours is defined %}
+
+# =============================================================================
+# Business Hours
+# =============================================================================
+
+{%- for day in business.hours %}
+{{ day.day }}: {{ day.open }} - {{ day.close }}
+{%- endfor %}
+{%- endif %}
+
+# =============================================================================
+# Description
+# =============================================================================
+
+{%- if site is defined and site.summary is defined %}
+{{ site.summary }}
+{%- endif %}
+
+# =============================================================================
+# Social Media
+# =============================================================================
+
+{%- if social is defined and social|length > 0 %}
+{%- for account in social %}
+{%- if account.profile is defined and account.profile|length %}
+{{ account.service }}: {{ account.profile }}
+{%- endif %}
+{%- endfor %}
+{%- endif %}

@@ -1,1 +1,33 @@
-{% if google_ads is defined and google_ads == 'true' %}{{ host_gas_txt }}{% endif %}
+# ads.txt
+# Authorized Digital Sellers for Advertising
+# See https://iabtechlab.com/ads-txt/ for specification
+{%- if site is defined and site.name_long is defined %}
+# {{ site.name_long }}
+{%- endif %}
+
+# =============================================================================
+# Authorized Sellers
+# =============================================================================
+
+{%- if ads is defined and ads.sellers is defined %}
+{%- for seller in ads.sellers %}
+{{ seller.domain }}, {{ seller.publisher_id }}, {{ seller.relationship | default("DIRECT") }}{% if seller.certification_id is defined %}, {{ seller.certification_id }}{% endif %}
+
+{%- endfor %}
+{%- elif meta is defined and meta.tags is defined %}
+{#- Google AdSense Example -#}
+{%- if meta.tags.gas_txt is defined and meta.tags.gas_txt|length %}
+{{ meta.tags.gas_txt }}
+{%- elif meta.tags.gas_seller_id is defined and meta.tags.gas_seller_id|length %}
+google.com, {{ meta.tags.gas_seller_id }}, {{ meta.tags.gas_seller_type | default("DIRECT") }}{% if meta.tags.gas_customer_id is defined and meta.tags.gas_customer_id|length %}, {{ meta.tags.gas_customer_id }}{% endif %}
+
+{%- endif %}
+{%- endif %}
+
+# =============================================================================
+# Contact
+# =============================================================================
+
+{%- if site_contact is defined and site_contact.email is defined %}
+# Contact: {{ site_contact.email }}
+{%- endif %}

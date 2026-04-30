@@ -1,49 +1,90 @@
 {
-    "name": "Scape Press",
-    "short_name": "Scape Press",
-    "description": "",
+{%- set m = manifest | default({}) %}
+    "name": "{{ m.name | default(site.name_long if site is defined and site.name_long is defined else (site.name if site is defined and site.name is defined else 'App')) }}",
+    "short_name": "{{ m.short_name | default(site.name if site is defined and site.name is defined else (site.abbr if site is defined and site.abbr is defined else 'App')) }}",
+    "description": "{{ m.description | default(site.summary if site is defined and site.summary is defined else '') }}",
+    "start_url": "{{ m.start_url | default('/') }}",
+    "scope": "{{ m.scope | default('/') }}",
+    "display": "{{ m.display | default('standalone') }}",
+    "orientation": "{{ m.orientation | default('any') }}",
+    "background_color": "{{ m.background_color | default('#ffffff') }}",
+    "theme_color": "{{ m.theme_color | default('#ffffff') }}",
+{%- if m.id is defined %}
+    "id": "{{ m.id }}",
+{%- endif %}
+{%- if m.lang is defined %}
+    "lang": "{{ m.lang }}",
+{%- elif meta is defined and meta.meta is defined and meta.meta.language is defined %}
+    "lang": "{{ meta.meta.language[:2] | lower }}",
+{%- endif %}
+{%- if m.dir is defined %}
+    "dir": "{{ m.dir }}",
+{%- endif %}
+{%- if m.categories is defined %}
+    "categories": {{ m.categories | tojson }},
+{%- endif %}
+{%- if m.iarc_rating_id is defined %}
+    "iarc_rating_id": "{{ m.iarc_rating_id }}",
+{%- endif %}
+{%- if m.prefer_related_applications is defined %}
+    "prefer_related_applications": {{ m.prefer_related_applications | tojson }},
+{%- endif %}
+{%- if m.related_applications is defined %}
+    "related_applications": {{ m.related_applications | tojson }},
+{%- endif %}
+{%- if m.shortcuts is defined %}
+    "shortcuts": {{ m.shortcuts | tojson }},
+{%- endif %}
+{%- if m.screenshots is defined %}
+    "screenshots": {{ m.screenshots | tojson }},
+{%- endif %}
+{%- if m.share_target is defined %}
+    "share_target": {{ m.share_target | tojson }},
+{%- endif %}
+{%- if m.protocol_handlers is defined %}
+    "protocol_handlers": {{ m.protocol_handlers | tojson }},
+{%- endif %}
+{%- if m.icons is defined %}
+    "icons": {{ m.icons | tojson }}
+{%- else %}
+{%- set icon_path = m.icon_path | default('/static/favicon/') %}
     "icons": [
         {
-            "src": "\/static/favicon/favicon-36.png",
-            "sizes": "36x36",
-            "type": "image\/png",
-            "density": "0.75"
-        },
-        {
-            "src": "\/static/favicon/favicon-48.png",
+            "src": "{{ icon_path }}favicon-48.png",
             "sizes": "48x48",
-            "type": "image\/png",
-            "density": "1.0"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
-            "src": "\/static/favicon/favicon-72.png",
+            "src": "{{ icon_path }}favicon-72.png",
             "sizes": "72x72",
-            "type": "image\/png",
-            "density": "1.5"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
-            "src": "\/static/favicon/favicon-96.png",
+            "src": "{{ icon_path }}favicon-96.png",
             "sizes": "96x96",
-            "type": "image\/png",
-            "density": "2.0"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
-            "src": "\/static/favicon/favicon-144.png",
+            "src": "{{ icon_path }}favicon-144.png",
             "sizes": "144x144",
-            "type": "image\/png",
-            "density": "3.0"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
-            "src": "\/static/favicon/favicon-192.png",
+            "src": "{{ icon_path }}favicon-192.png",
             "sizes": "192x192",
-            "type": "image\/png",
-            "density": "4.0"
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "{{ icon_path }}favicon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
         }
-    ],
-    "start_url": "/",
-    "background_color": "#ffffff",
-    "display": "minimal-ui",
-    "scope": "/",
-    "theme_color": "#ffffff"
-
+    ]
+{%- endif %}
 }

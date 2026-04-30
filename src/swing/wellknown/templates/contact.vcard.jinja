@@ -1,25 +1,58 @@
 BEGIN:VCARD
-VERSION:3.0
-N:Doe;John;;;
-FN:John Doe
-ORG:Example.com Inc.;
-TITLE:Imaginary test person
-EMAIL;type=INTERNET;type=WORK;type=pref:johnDoe@example.org
-TEL;type=WORK;type=pref:+1 617 555 1212
-TEL;type=WORK:+1 (617) 555-1234
-TEL;type=CELL:+1 781 555 1212
-TEL;type=HOME:+1 202 555 1212
-item1.ADR;type=WORK:;;2 Enterprise Avenue;Worktown;NY;01111;USA
-item1.X-ABADR:us
-item2.ADR;type=HOME;type=pref:;;3 Acacia Avenue;Hoemtown;MA;02222;USA
-item2.X-ABADR:us
-NOTE:John Doe has a long and varied history\, being documented on more police files that anyone else. Reports of his death are alas numerous.
-item3.URL;type=pref:http\://www.example/com/doe
-item3.X-ABLabel:_$!<HomePage>!$_
-item4.URL:http\://www.example.com/Joe/foaf.df
-item4.X-ABLabel:FOAF
-item5.X-ABRELATEDNAMES;type=pref:Jane Doe
-item5.X-ABLabel:_$!<Friend>!$_
-CATEGORIES:Work,Test group
-X-ABUID:5AD380FD-B2DE-4261-BA99-DE1D1DB52FBE\:ABPerson
+VERSION:4.0
+{#- Organization name -#}
+{%- if site is defined %}
+FN:{{ site.name_long | default(site.name, true) }}
+{%- if site.name_legal is defined %}
+ORG:{{ site.name_legal }}
+{%- else %}
+ORG:{{ site.name_long | default(site.name, true) }}
+{%- endif %}
+{%- endif %}
+{#- Contact information -#}
+{%- if site_contact is defined %}
+{%- if site_contact.email is defined %}
+EMAIL;TYPE=work:{{ site_contact.email }}
+{%- endif %}
+{%- if site_contact.url is defined %}
+URL:{{ site_contact.url }}
+{%- endif %}
+{%- if site_contact.locations is defined and site_contact.locations|length > 0 %}
+{%- set loc = site_contact.locations[0] %}
+{%- if loc.phone is defined %}
+TEL;TYPE=work,voice:{{ loc.phone }}
+{%- endif %}
+ADR;TYPE=work:;;{{ loc.street | default("") }}{% if loc.street_number is defined %} {{ loc.street_number }}{% endif %};{{ loc.city | default("") }};{{ loc.province | default("") }};{{ loc.postal_code | default("") }};{{ loc.country | default("") }}
+{%- endif %}
+{%- endif %}
+{#- Social profiles -#}
+{%- if social is defined and social|length > 0 %}
+{%- for account in social %}
+{%- if account.profile is defined and account.profile|length %}
+X-SOCIALPROFILE;TYPE={{ account.service | lower }}:{{ account.profile }}
+{%- endif %}
+{%- endfor %}
+{%- endif %}
+{#- Additional fields -#}
+{%- if site is defined and site.summary is defined %}
+NOTE:{{ site.summary | replace("\n", "\\n") }}
+{%- endif %}
+{%- if vcard is defined %}
+{%- if vcard.categories is defined %}
+CATEGORIES:{{ vcard.categories | join(",") }}
+{%- endif %}
+{%- if vcard.logo is defined %}
+LOGO:{{ vcard.logo }}
+{%- endif %}
+{%- if vcard.photo is defined %}
+PHOTO:{{ vcard.photo }}
+{%- endif %}
+{%- if vcard.geo is defined %}
+GEO:{{ vcard.geo }}
+{%- endif %}
+{%- if vcard.tz is defined %}
+TZ:{{ vcard.tz }}
+{%- endif %}
+{%- endif %}
+REV:{{ current_year }}0101T000000Z
 END:VCARD

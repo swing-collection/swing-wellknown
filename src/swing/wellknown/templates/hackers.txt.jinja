@@ -1,2 +1,96 @@
-Hello Hackers
+# hackers.txt
+# Information for security researchers and ethical hackers
+{%- if site is defined and site.name_long is defined %}
+# {{ site.name_long }}
+{%- endif %}
 
+# =============================================================================
+# Welcome
+# =============================================================================
+
+{%- if hackers is defined and hackers.greeting is defined %}
+{{ hackers.greeting }}
+{%- else %}
+Hello, hackers and security researchers!
+
+We appreciate your interest in our security. If you've found a
+vulnerability, please report it responsibly.
+{%- endif %}
+
+# =============================================================================
+# Vulnerability Disclosure
+# =============================================================================
+
+{%- if hackers is defined and hackers.disclosure is defined %}
+{{ hackers.disclosure }}
+{%- else %}
+We ask that you:
+- Do not access or modify data that doesn't belong to you
+- Do not disrupt our services or degrade user experience
+- Report vulnerabilities to us privately first
+- Give us reasonable time to address the issue
+{%- endif %}
+
+# =============================================================================
+# Contact
+# =============================================================================
+
+{%- if hackers is defined and hackers.contact is defined %}
+Security Contact: {{ hackers.contact }}
+{%- elif site_contact is defined and site_contact.email is defined %}
+Security Contact: {{ site_contact.email }}
+{%- endif %}
+
+{%- if site_contact is defined and site_contact.url is defined %}
+Security Policy: {{ site_contact.url }}security.txt
+{%- endif %}
+
+# =============================================================================
+# Scope
+# =============================================================================
+
+{%- if hackers is defined and hackers.in_scope is defined %}
+In Scope:
+{%- for item in hackers.in_scope %}
+- {{ item }}
+{%- endfor %}
+{%- else %}
+In Scope:
+- *.{{ site_contact.url | default("example.com") | replace("https://", "") | replace("http://", "") | replace("/", "") | replace("www.", "") }}
+{%- endif %}
+
+{%- if hackers is defined and hackers.out_of_scope is defined %}
+
+Out of Scope:
+{%- for item in hackers.out_of_scope %}
+- {{ item }}
+{%- endfor %}
+{%- else %}
+
+Out of Scope:
+- Social engineering attacks
+- Physical security testing
+- Third-party services
+- Denial of service attacks
+{%- endif %}
+
+# =============================================================================
+# Recognition
+# =============================================================================
+
+{%- if hackers is defined and hackers.rewards is defined %}
+{{ hackers.rewards }}
+{%- else %}
+We may acknowledge security researchers who:
+- Follow responsible disclosure guidelines
+- Report valid, previously unknown vulnerabilities
+- Help us improve our security posture
+
+{%- if hackers is defined and hackers.hall_of_fame is defined %}
+Hall of Fame: {{ hackers.hall_of_fame }}
+{%- elif site_contact is defined and site_contact.url is defined %}
+# Hall of Fame: {{ site_contact.url }}security/acknowledgments/
+{%- endif %}
+{%- endif %}
+
+# Happy hacking!

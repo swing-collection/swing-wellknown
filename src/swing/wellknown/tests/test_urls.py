@@ -22,8 +22,13 @@ class TestURLPatterns:
 
     def test_security_url_resolves(self) -> None:
         """Test security.txt URL resolves correctly."""
-        resolver = resolve("/.well-known/security.txt")
+        resolver = resolve("/security.txt")
         assert resolver.url_name == "security"
+
+    def test_security_wellknown_url_resolves(self) -> None:
+        """Test .well-known/security.txt URL resolves correctly."""
+        resolver = resolve("/.well-known/security.txt")
+        assert resolver.url_name == "security-wellknown"
 
     def test_business_url_resolves(self) -> None:
         """Test business.txt URL resolves correctly."""
@@ -112,6 +117,11 @@ class TestReverseURLs:
     def test_reverse_security(self) -> None:
         """Test reverse lookup for security URL."""
         url = reverse("texts:security")
+        assert url == "/security.txt"
+
+    def test_reverse_security_wellknown(self) -> None:
+        """Test reverse lookup for security-wellknown URL."""
+        url = reverse("texts:security-wellknown")
         assert url == "/.well-known/security.txt"
 
     def test_reverse_manifest(self) -> None:

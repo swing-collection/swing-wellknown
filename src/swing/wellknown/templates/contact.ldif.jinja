@@ -1,41 +1,45 @@
-dn: cn=John Doe,mail=johnDoe@example.org
-objectclass: top
-objectclass: person
-objectclass: organizationalPerson
-objectclass: inetOrgPerson
-objectclass: mozillaAbPersonAlpha
-givenName: John
-sn: Doe
-cn: John Doe
-mail: johnDoe@example.org
-telephoneNumber: +1-(617)-555-1234
-homePhone: +1-202-555-1212
-homeStreet: 3 Acacia Avenue
-mozillaHomeLocalityName: Hometown
-mozillaHomeState: MA
-mozillaHomePostalCode: 02222
-mozillaHomeCountryName: USA
-street: 2 Enterprise Avenue
-st: NY
-postalCode: 01111
-c: USA
-title: Imaginary test person
-company: Example.com Inc.
-description: John Doe has a long and varied history, being documented on more police files that anyone else. Reports of his death are alas numerous.
+# LDIF - LDAP Data Interchange Format
+# Contact information for {{ site.name_long | default(site.name, true) if site is defined else "Organization" }}
 
+{%- if site is defined and site_contact is defined %}
+dn: cn={{ site.name_long | default(site.name, true) }},o={{ site.name_legal | default(site.name_long | default(site.name, true), true) }}
+objectClass: top
+objectClass: organization
+objectClass: inetOrgPerson
+o: {{ site.name_legal | default(site.name_long | default(site.name, true), true) }}
+cn: {{ site.name_long | default(site.name, true) }}
+{%- if site_contact.email is defined %}
+mail: {{ site_contact.email }}
+{%- endif %}
+{%- if site_contact.url is defined %}
+labeledURI: {{ site_contact.url }}
+{%- endif %}
+{%- if site_contact.locations is defined and site_contact.locations|length > 0 %}
+{%- set loc = site_contact.locations[0] %}
+{%- if loc.phone is defined %}
+telephoneNumber: {{ loc.phone }}
+{%- endif %}
+{%- if loc.street is defined %}
+street: {{ loc.street }}{% if loc.street_number is defined %} {{ loc.street_number }}{% endif %}
 
-
-
-
-
-
-
- dn: cn=Jennifer K. Doe, o=University of High
-       er Learning, c=US
-      cn: Jennifer K. Doe
-      cn: Jennifer Doe
-      objectclass: person
-      sn: Doe
-      jpegPhoto:: /9j/4AAQSkZJRgABAAAAAQABAAD/2wBDABALD
-       A4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQ
-       ERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVG
+{%- endif %}
+{%- if loc.city is defined %}
+l: {{ loc.city }}
+{%- endif %}
+{%- if loc.province is defined %}
+st: {{ loc.province }}
+{%- endif %}
+{%- if loc.postal_code is defined %}
+postalCode: {{ loc.postal_code }}
+{%- endif %}
+{%- if loc.country is defined %}
+c: {{ loc.country }}
+{%- endif %}
+{%- endif %}
+{%- if site.summary is defined %}
+description: {{ site.summary }}
+{%- endif %}
+{%- else %}
+# No contact information configured.
+# Set 'site' and 'site_contact' context variables to generate LDIF data.
+{%- endif %}

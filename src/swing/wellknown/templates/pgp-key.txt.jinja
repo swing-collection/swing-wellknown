@@ -1,5 +1,53 @@
+# PGP Public Key
+# For encrypted communications
+{%- if site is defined and site.name_long is defined %}
+# {{ site.name_long }}
+{%- endif %}
+
+{%- if pgp is defined and pgp.key is defined %}
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
-
-
+{{ pgp.key }}
 -----END PGP PUBLIC KEY BLOCK-----
+{%- else %}
+# No PGP key has been configured.
+#
+# To add a PGP key, set the 'pgp' context variable with:
+# {
+#     "key": "<base64 encoded public key>",
+#     "fingerprint": "<key fingerprint>",
+#     "key_id": "<key id>",
+#     "expires": "<expiry date>"
+# }
+{%- endif %}
+
+{%- if pgp is defined %}
+
+# =============================================================================
+# Key Information
+# =============================================================================
+
+{%- if pgp.fingerprint is defined %}
+Fingerprint: {{ pgp.fingerprint }}
+{%- endif %}
+{%- if pgp.key_id is defined %}
+Key ID: {{ pgp.key_id }}
+{%- endif %}
+{%- if pgp.expires is defined %}
+Expires: {{ pgp.expires }}
+{%- endif %}
+{%- if pgp.email is defined %}
+Email: {{ pgp.email }}
+{%- elif site_contact is defined and site_contact.email is defined %}
+Email: {{ site_contact.email }}
+{%- endif %}
+
+{%- if pgp.keyserver is defined %}
+
+# =============================================================================
+# Key Server
+# =============================================================================
+
+{{ pgp.keyserver }}
+{%- endif %}
+{%- endif %}

@@ -25,16 +25,7 @@ from typing import Any
 from django.views.generic.base import TemplateView
 
 # Import | Local Modules
-from .loader_brand import load_brand_data
-from .loader_meta import load_meta_data
-from .loader_social import load_social_data
-
-
-# =============================================================================
-# Export
-# =============================================================================
-
-__all__: list[str] = ["text_view",]
+from ..utils import load_brand_data, load_meta_data, load_social_data
 
 
 # =============================================================================
@@ -107,3 +98,10 @@ class TextView(TemplateView):
 # =============================================================================
 
 text_view = TextView.as_view
+
+
+# =============================================================================
+# Export
+# =============================================================================
+
+__all__: list[str] = ["text_view",]

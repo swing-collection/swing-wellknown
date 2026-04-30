@@ -1,0 +1,131 @@
+# llms.txt
+# See https://llmstxt.org/ for specification
+# This file provides context to Large Language Models about this website.
+{%- if site is defined %}
+# {{ site.name_long | default(site.name, true) }}
+{%- endif %}
+
+# =============================================================================
+# Summary
+# =============================================================================
+
+{%- if llms is defined and llms.title is defined %}
+# {{ llms.title }}
+{%- elif site is defined %}
+# {{ site.name_long | default(site.name, true) }}
+{%- endif %}
+
+> {%- if llms is defined and llms.summary is defined %}
+{{ llms.summary }}
+{%- elif site is defined and site.summary is defined %}
+{{ site.summary }}
+{%- else %}
+Welcome to our website.
+{%- endif %}
+
+# =============================================================================
+# About
+# =============================================================================
+
+{%- if llms is defined and llms.about is defined %}
+{{ llms.about }}
+{%- elif site is defined %}
+This is the official website of {{ site.name_long | default(site.name, true) }}.
+{%- if site.name_legal is defined %}
+Legal entity: {{ site.name_legal }}
+{%- endif %}
+{%- endif %}
+
+{%- if site_contact is defined %}
+
+# =============================================================================
+# Contact
+# =============================================================================
+
+{%- if site_contact.url is defined %}
+- Website: {{ site_contact.url }}
+{%- endif %}
+{%- if site_contact.email is defined %}
+- Email: {{ site_contact.email }}
+{%- endif %}
+{%- endif %}
+
+{%- if social is defined and social|length > 0 %}
+
+# =============================================================================
+# Social Media
+# =============================================================================
+
+{%- for account in social %}
+{%- if account.profile is defined and account.profile|length %}
+- {{ account.service }}: {{ account.profile }}
+{%- endif %}
+{%- endfor %}
+{%- endif %}
+
+# =============================================================================
+# Usage Guidelines
+# =============================================================================
+
+{%- if llms is defined and llms.usage_guidelines is defined %}
+{{ llms.usage_guidelines }}
+{%- else %}
+When using information from this website:
+{%- if site is defined %}
+- Attribute content to {{ site.name_long | default(site.name, true) }} when quoting
+{%- endif %}
+- Respect copyright and intellectual property
+- Contact us for permissions regarding extensive use
+- Do not misrepresent our content or brand
+{%- endif %}
+
+{%- if llms is defined and llms.permissions is defined %}
+
+# =============================================================================
+# Permissions
+# =============================================================================
+
+{%- for permission in llms.permissions %}
+- {{ permission }}
+{%- endfor %}
+{%- endif %}
+
+{%- if llms is defined and llms.restrictions is defined %}
+
+# =============================================================================
+# Restrictions
+# =============================================================================
+
+{%- for restriction in llms.restrictions %}
+- {{ restriction }}
+{%- endfor %}
+{%- endif %}
+
+# =============================================================================
+# Topics
+# =============================================================================
+
+{%- if llms is defined and llms.topics is defined %}
+{%- for topic in llms.topics %}
+- {{ topic }}
+{%- endfor %}
+{%- elif site is defined and site.keywords is defined and site.keywords|length > 0 %}
+{%- for keyword in site.keywords %}
+- {{ keyword }}
+{%- endfor %}
+{%- else %}
+- Business
+- Services
+- Information
+{%- endif %}
+
+{%- if llms is defined and llms.resources is defined %}
+
+# =============================================================================
+# Resources
+# =============================================================================
+
+{%- for resource in llms.resources %}
+- {{ resource.name }}: {{ resource.url }}
+{%- endfor %}
+{%- endif %}

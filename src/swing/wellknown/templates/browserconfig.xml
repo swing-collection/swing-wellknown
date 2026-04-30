@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <browserconfig>
-        <msapplication>
-            <tile>
-                <square70x70logo src="/static/favicon-70.png"/>
-                <square150x150logo src="/static/favicon-150.png"/>
-                <square310x310logo src="/static/favicon-310.png"/>
-                <TileColor>#ffffff</TileColor>
-            </tile>
-        </msapplication>
-    </browserconfig>
+{%- set bc = browserconfig | default({}) %}
+{%- set icon_path = bc.icon_path | default('/static/favicon/') %}
+<browserconfig>
+    <msapplication>
+        <tile>
+            <square70x70logo src="{{ icon_path }}favicon-70.png"/>
+            <square150x150logo src="{{ icon_path }}favicon-150.png"/>
+            <wide310x150logo src="{{ icon_path }}favicon-310x150.png"/>
+            <square310x310logo src="{{ icon_path }}favicon-310.png"/>
+            <TileColor>{{ bc.tile_color | default('#ffffff') }}</TileColor>
+        </tile>
+{%- if bc.notification is defined %}
+        <notification>
+            <polling-uri src="{{ bc.notification.polling_uri }}"/>
+            <frequency>{{ bc.notification.frequency | default(30) }}</frequency>
+            <cycle>{{ bc.notification.cycle | default(1) }}</cycle>
+        </notification>
+{%- endif %}
+{%- if bc.badge is defined %}
+        <badge>
+            <polling-uri src="{{ bc.badge.polling_uri }}"/>
+            <frequency>{{ bc.badge.frequency | default(30) }}</frequency>
+        </badge>
+{%- endif %}
+    </msapplication>
+</browserconfig>

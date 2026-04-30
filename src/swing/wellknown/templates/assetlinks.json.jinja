@@ -1,0 +1,29 @@
+[
+{%- if assetlinks is defined and assetlinks|length > 0 %}
+{%- for link in assetlinks %}
+    {
+        "relation": {{ link.relation | default(['delegate_permission/common.handle_all_urls']) | tojson }},
+        "target": {
+{%- if link.namespace is defined and link.namespace == 'web' %}
+            "namespace": "web",
+            "site": "{{ link.site }}"
+{%- else %}
+            "namespace": "android_app",
+            "package_name": "{{ link.package_name }}",
+            "sha256_cert_fingerprints": {{ link.fingerprints | tojson }}
+{%- endif %}
+        }
+    }{% if not loop.last %},{% endif %}
+
+{%- endfor %}
+{%- else %}
+    {
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.example.app",
+            "sha256_cert_fingerprints": []
+        }
+    }
+{%- endif %}
+]

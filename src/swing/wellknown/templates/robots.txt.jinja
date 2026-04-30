@@ -1,17 +1,106 @@
-# www.robotstxt.org/
+# robots.txt
+# See https://www.robotstxt.org/ for specification
+{%- if site is defined and site.name_long is defined %}
+# {{ site.name_long }}
+{%- endif %}
 
-# Allow crawling of all content
-User-agent: *
-Disallow:
+# =============================================================================
+# User Agents
+# =============================================================================
 
+{%- if robots is defined and robots.rules is defined %}
+{%- for rule in robots.rules %}
+User-agent: {{ rule.user_agent | default("*") }}
+{%- if rule.allow is defined %}
+{%- for path in rule.allow %}
+Allow: {{ path }}
+{%- endfor %}
+{%- endif %}
+{%- if rule.disallow is defined %}
+{%- for path in rule.disallow %}
+Disallow: {{ path }}
+{%- endfor %}
+{%- endif %}
+{%- if rule.crawl_delay is defined %}
+Crawl-delay: {{ rule.crawl_delay }}
+{%- endif %}
 
-
-SITEMAP: http://www.scape.press/sitemap.xml
-
-
-
-
+{%- endfor %}
+{%- else %}
+# Default: Allow all crawlers
 User-agent: *
 Allow: /
 
-Sitemap: {{ site_contact.site_url }}sitemap.xml
+# Protected paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /accounts/
+Disallow: /wp-admin/
+Disallow: /cgi-bin/
+Disallow: /*.json$
+Disallow: /*?*
+
+{%- endif %}
+
+# =============================================================================
+# AI Crawlers
+# =============================================================================
+
+{%- if robots is defined and robots.ai_crawlers is defined %}
+{%- for crawler in robots.ai_crawlers %}
+User-agent: {{ crawler.name }}
+{%- if crawler.allow is defined and crawler.allow %}
+Allow: /
+{%- else %}
+Disallow: /
+{%- endif %}
+
+{%- endfor %}
+{%- else %}
+# AI Training Bots (customize as needed)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+{%- endif %}
+
+# =============================================================================
+# Sitemaps
+# =============================================================================
+
+{%- if robots is defined and robots.sitemaps is defined %}
+{%- for sitemap in robots.sitemaps %}
+Sitemap: {{ sitemap }}
+{%- endfor %}
+{%- elif site_contact is defined and site_contact.url is defined %}
+Sitemap: {{ site_contact.url }}sitemap.xml
+{%- endif %}
+
+# =============================================================================
+# Host (Yandex)
+# =============================================================================
+
+{%- if site_contact is defined and site_contact.url is defined %}
+Host: {{ site_contact.url | replace("https://", "") | replace("http://", "") | replace("/", "") }}
+{%- endif %}

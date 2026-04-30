@@ -1,0 +1,83 @@
+# Do Not Track Policy
+# See https://www.eff.org/dnt-policy for specification
+{%- if site is defined %}
+# {{ site.name_long | default(site.name, true) }} Do Not Track Policy
+{%- endif %}
+
+# =============================================================================
+# Policy Version
+# =============================================================================
+
+{%- if dnt is defined and dnt.policy_version is defined %}
+POLICY: {{ dnt.policy_version }}
+{%- else %}
+POLICY: 1
+{%- endif %}
+
+# =============================================================================
+# Tracking Statement
+# =============================================================================
+
+{%- if dnt is defined and dnt.statement is defined %}
+{{ dnt.statement }}
+{%- else %}
+This site respects the Do Not Track (DNT) browser setting.
+When DNT is enabled, we will not:
+- Use third-party tracking cookies
+- Share browsing data with advertising networks
+- Create behavioral profiles for advertising purposes
+{%- endif %}
+
+# =============================================================================
+# Exceptions
+# =============================================================================
+
+{%- if dnt is defined and dnt.exceptions is defined %}
+{%- for exception in dnt.exceptions %}
+- {{ exception }}
+{%- endfor %}
+{%- else %}
+We may still collect:
+- Essential cookies for site functionality
+- Anonymous aggregate analytics
+- Data necessary for security and fraud prevention
+{%- endif %}
+
+# =============================================================================
+# First-Party Data
+# =============================================================================
+
+{%- if dnt is defined and dnt.first_party_data is defined %}
+{%- for item in dnt.first_party_data %}
+- {{ item }}
+{%- endfor %}
+{%- else %}
+We may collect first-party data for:
+- Account management
+- Service delivery
+- Direct communications you have opted into
+{%- endif %}
+
+# =============================================================================
+# Contact
+# =============================================================================
+
+{%- if dnt is defined and dnt.contact is defined %}
+For privacy inquiries: {{ dnt.contact }}
+{%- elif site_contact is defined and site_contact.email is defined %}
+For privacy inquiries: {{ site_contact.email }}
+{%- endif %}
+
+{%- if site_contact is defined and site_contact.url is defined %}
+Privacy Policy: {{ site_contact.url }}privacy/
+{%- endif %}
+
+# =============================================================================
+# Effective Date
+# =============================================================================
+
+{%- if dnt is defined and dnt.effective_date is defined %}
+Last updated: {{ dnt.effective_date }}
+{%- else %}
+Last updated: {{ current_year }}-01-01
+{%- endif %}

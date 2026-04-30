@@ -1,22 +1,85 @@
-# Canonical
-Canonical: https://www.scape.press/.well-known/security.txt
-Canonical: https://www.scape.press/security.txt
+# security.txt
+# See https://securitytxt.org/ for specification
+# RFC 9116 - A File Format to Aid in Security Vulnerability Disclosure
+{%- if site is defined and site.name_long is defined %}
+# {{ site.name_long }}
+{%- endif %}
 
-# Contact
-Contact: mailto:info@scape.press
+# =============================================================================
+# Required Fields (per RFC 9116)
+# =============================================================================
 
-# Preferred-Languages
-Preferred-Languages: en, nl
+# Contact: How to report security vulnerabilities
+{%- if security is defined and security.contact is defined %}
+{%- for contact in security.contact %}
+Contact: {{ contact }}
+{%- endfor %}
+{%- elif site_contact is defined and site_contact.email is defined %}
+Contact: mailto:{{ site_contact.email }}
+{%- if site_contact.url is defined %}
+Contact: {{ site_contact.url }}contact/
+{%- endif %}
+{%- endif %}
 
+# Expires: When this security.txt should be considered stale
+{%- if security is defined and security.expires is defined %}
+Expires: {{ security.expires }}
+{%- else %}
+Expires: {{ current_year + 1 }}-12-31T23:59:59.000Z
+{%- endif %}
 
+# =============================================================================
+# Recommended Fields
+# =============================================================================
 
+# Canonical: The canonical URIs for this security.txt
+{%- if security is defined and security.canonical is defined %}
+{%- for uri in security.canonical %}
+Canonical: {{ uri }}
+{%- endfor %}
+{%- elif site_contact is defined and site_contact.url is defined %}
+Canonical: {{ site_contact.url }}.well-known/security.txt
+Canonical: {{ site_contact.url }}security.txt
+{%- endif %}
 
-# Canonical
-Canonical: {{ site_contact.site_url }}.well-known/security.txt
-Canonical: {{ site_contact.site_url }}security.txt
-
-# Contact
-Contact: mailto:{{ site_contact.site_email }}
-
-# Preferred-Languages
+# Preferred-Languages: Languages for security reports
+{%- if security is defined and security.preferred_languages is defined %}
+Preferred-Languages: {{ security.preferred_languages | join(", ") }}
+{%- else %}
 Preferred-Languages: en
+{%- endif %}
+
+# =============================================================================
+# Optional Fields
+# =============================================================================
+
+# Encryption: PGP key for encrypted communications
+{%- if security is defined and security.encryption is defined %}
+Encryption: {{ security.encryption }}
+{%- elif site_contact is defined and site_contact.url is defined %}
+# Encryption: {{ site_contact.url }}.well-known/pgp-key.txt
+{%- endif %}
+
+# Acknowledgments: Page recognizing security researchers
+{%- if security is defined and security.acknowledgments is defined %}
+Acknowledgments: {{ security.acknowledgments }}
+{%- elif site_contact is defined and site_contact.url is defined %}
+# Acknowledgments: {{ site_contact.url }}security/acknowledgments/
+{%- endif %}
+
+# Policy: Link to security policy
+{%- if security is defined and security.policy is defined %}
+Policy: {{ security.policy }}
+{%- elif site_contact is defined and site_contact.url is defined %}
+# Policy: {{ site_contact.url }}security/policy/
+{%- endif %}
+
+# Hiring: Security job openings
+{%- if security is defined and security.hiring is defined %}
+Hiring: {{ security.hiring }}
+{%- endif %}
+
+# CSAF: Security advisories (RFC 9116 Section 2.5.7)
+{%- if security is defined and security.csaf is defined %}
+CSAF: {{ security.csaf }}
+{%- endif %}

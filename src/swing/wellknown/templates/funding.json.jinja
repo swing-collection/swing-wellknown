@@ -1,0 +1,27 @@
+{
+    "version": "{{ funding.version | default('1.0.0') }}",
+{%- if site is defined %}
+    "name": "{{ funding.name | default(site.name_long | default(site.name, true), true) }}",
+{%- elif funding is defined and funding.name is defined %}
+    "name": "{{ funding.name }}",
+{%- endif %}
+{%- if funding is defined and funding.primary is defined %}
+    "funding": {
+        "type": "{{ funding.primary.type }}",
+        "url": "{{ funding.primary.url }}"
+    },
+{%- endif %}
+{%- if funding is defined and funding.channels is defined and funding.channels|length > 0 %}
+    "channels": [
+{%- for channel in funding.channels %}
+        {
+            "type": "{{ channel.type }}",
+            "url": "{{ channel.url }}"
+        }{% if not loop.last %},{% endif %}
+
+{%- endfor %}
+    ]
+{%- else %}
+    "channels": []
+{%- endif %}
+}

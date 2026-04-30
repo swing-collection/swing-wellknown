@@ -1,10 +1,65 @@
-#{{ site_name }} trust.txt file 
+# trust.txt
+# Verifiable social media and identity links
+# See https://indieweb.org/trust.txt for specification
+{%- if site is defined and site.name_long is defined %}
+# {{ site.name_long }}
+{%- endif %}
 
+# =============================================================================
+# Identity
+# =============================================================================
 
-{% if social is defined %}
+{%- if site_contact is defined and site_contact.url is defined %}
+website={{ site_contact.url }}
+{%- endif %}
+
+{%- if trust is defined %}
+{%- if trust.domain is defined %}
+domain={{ trust.domain }}
+{%- endif %}
+{%- if trust.owner is defined %}
+owner={{ trust.owner }}
+{%- endif %}
+{%- endif %}
+
+# =============================================================================
+# Verified Social Accounts
+# =============================================================================
+
+{%- if social is defined and social|length > 0 %}
 {%- for account in social %}
-{%- if account.profile|length %}
+{%- if account.profile is defined and account.profile|length %}
 social={{ account.profile }}
-{%- endif -%}
-{%- endfor -%}
-{%- endif -%}
+{%- endif %}
+{%- endfor %}
+{%- endif %}
+
+# =============================================================================
+# Affiliations
+# =============================================================================
+
+{%- if trust is defined and trust.affiliations is defined %}
+{%- for affiliation in trust.affiliations %}
+affiliate={{ affiliation }}
+{%- endfor %}
+{%- endif %}
+
+# =============================================================================
+# Control
+# =============================================================================
+
+{%- if trust is defined and trust.controls is defined %}
+{%- for control in trust.controls %}
+control={{ control }}
+{%- endfor %}
+{%- endif %}
+
+# =============================================================================
+# Verification
+# =============================================================================
+
+{%- if trust is defined and trust.verification is defined %}
+verify={{ trust.verification }}
+{%- endif %}
+
+updated={{ current_year }}

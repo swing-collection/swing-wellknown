@@ -1,0 +1,65 @@
+{
+{%- if aasa is defined %}
+{%- if aasa.applinks is defined %}
+    "applinks": {
+        "apps": [],
+        "details": [
+{%- for app in aasa.applinks %}
+            {
+                "appID": "{{ app.team_id }}.{{ app.bundle_id }}",
+                "paths": {{ app.paths | default(['*']) | tojson }}
+{%- if app.components is defined %},
+                "components": {{ app.components | tojson }}
+{%- endif %}
+            }{% if not loop.last %},{% endif %}
+
+{%- endfor %}
+        ]
+    }{% if aasa.webcredentials is defined or aasa.activitycontinuation is defined or aasa.appclips is defined %},{% endif %}
+
+{%- endif %}
+{%- if aasa.webcredentials is defined %}
+    "webcredentials": {
+        "apps": [
+{%- for app in aasa.webcredentials %}
+            "{{ app.team_id }}.{{ app.bundle_id }}"{% if not loop.last %},{% endif %}
+
+{%- endfor %}
+        ]
+    }{% if aasa.activitycontinuation is defined or aasa.appclips is defined %},{% endif %}
+
+{%- endif %}
+{%- if aasa.activitycontinuation is defined %}
+    "activitycontinuation": {
+        "apps": [
+{%- for app in aasa.activitycontinuation %}
+            "{{ app.team_id }}.{{ app.bundle_id }}"{% if not loop.last %},{% endif %}
+
+{%- endfor %}
+        ]
+    }{% if aasa.appclips is defined %},{% endif %}
+
+{%- endif %}
+{%- if aasa.appclips is defined %}
+    "appclips": {
+        "apps": [
+{%- for app in aasa.appclips %}
+            "{{ app.team_id }}.{{ app.bundle_id }}"{% if not loop.last %},{% endif %}
+
+{%- endfor %}
+        ]
+    }
+{%- endif %}
+{%- else %}
+    "applinks": {
+        "apps": [],
+        "details": []
+    },
+    "webcredentials": {
+        "apps": []
+    },
+    "activitycontinuation": {
+        "apps": []
+    }
+{%- endif %}
+}

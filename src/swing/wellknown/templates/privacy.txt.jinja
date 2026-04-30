@@ -1,0 +1,106 @@
+# Privacy Policy Summary
+# Machine-readable privacy policy summary
+{%- if site is defined %}
+# {{ site.name_long | default(site.name, true) }} Privacy Summary
+{%- endif %}
+
+# =============================================================================
+# Data Collection
+# =============================================================================
+
+COLLECTS_PERSONAL_DATA: {{ privacy.collects_personal_data | default('minimal') }}
+COLLECTS_USAGE_DATA: {{ privacy.collects_usage_data | default('anonymous') }}
+USES_COOKIES: {{ privacy.uses_cookies | default('essential_only') }}
+USES_TRACKING: {{ privacy.uses_tracking | default('no') }}
+SHARES_DATA_WITH_THIRD_PARTIES: {{ privacy.shares_data | default('no') }}
+
+{%- if privacy is defined and privacy.data_types is defined %}
+# Data types collected:
+{%- for dtype in privacy.data_types %}
+# - {{ dtype }}
+{%- endfor %}
+{%- endif %}
+
+# =============================================================================
+# User Rights
+# =============================================================================
+
+ALLOWS_DATA_EXPORT: {{ privacy.allows_export | default('yes') }}
+ALLOWS_DATA_DELETION: {{ privacy.allows_deletion | default('yes') }}
+ALLOWS_OPT_OUT: {{ privacy.allows_opt_out | default('yes') }}
+{%- if privacy is defined and privacy.allows_correction is defined %}
+ALLOWS_DATA_CORRECTION: {{ privacy.allows_correction }}
+{%- endif %}
+{%- if privacy is defined and privacy.allows_portability is defined %}
+ALLOWS_DATA_PORTABILITY: {{ privacy.allows_portability }}
+{%- endif %}
+
+# =============================================================================
+# Data Retention
+# =============================================================================
+
+RETENTION_PERIOD: {{ privacy.retention_period | default('1_year') }}
+{%- if privacy is defined and privacy.deletion_policy is defined %}
+DELETION_POLICY: {{ privacy.deletion_policy }}
+{%- endif %}
+
+# =============================================================================
+# Jurisdiction & Compliance
+# =============================================================================
+
+GDPR_COMPLIANT: {{ privacy.gdpr_compliant | default('yes') }}
+CCPA_COMPLIANT: {{ privacy.ccpa_compliant | default('yes') }}
+{%- if privacy is defined and privacy.lgpd_compliant is defined %}
+LGPD_COMPLIANT: {{ privacy.lgpd_compliant }}
+{%- endif %}
+{%- if privacy is defined and privacy.pipeda_compliant is defined %}
+PIPEDA_COMPLIANT: {{ privacy.pipeda_compliant }}
+{%- endif %}
+
+{%- if privacy is defined and privacy.jurisdiction is defined %}
+JURISDICTION: {{ privacy.jurisdiction }}
+{%- endif %}
+
+# =============================================================================
+# Third Parties
+# =============================================================================
+
+{%- if privacy is defined and privacy.third_parties is defined %}
+{%- for party in privacy.third_parties %}
+THIRD_PARTY: {{ party.name }}{% if party.purpose is defined %} ({{ party.purpose }}){% endif %}
+
+{%- endfor %}
+{%- endif %}
+
+# =============================================================================
+# Contact
+# =============================================================================
+
+{%- if privacy is defined and privacy.contact is defined %}
+PRIVACY_CONTACT: {{ privacy.contact }}
+{%- elif site_contact is defined and site_contact.email is defined %}
+PRIVACY_CONTACT: {{ site_contact.email }}
+{%- endif %}
+
+{%- if privacy is defined and privacy.dpo_email is defined %}
+DPO_EMAIL: {{ privacy.dpo_email }}
+{%- elif site_contact is defined and site_contact.email is defined %}
+DPO_EMAIL: {{ site_contact.email }}
+{%- endif %}
+
+{%- if site_contact is defined and site_contact.url is defined %}
+PRIVACY_POLICY_URL: {{ site_contact.url }}privacy/
+{%- endif %}
+
+# =============================================================================
+# Effective Date
+# =============================================================================
+
+{%- if privacy is defined and privacy.effective_date is defined %}
+EFFECTIVE_DATE: {{ privacy.effective_date }}
+{%- else %}
+EFFECTIVE_DATE: {{ current_year }}-01-01
+{%- endif %}
+{%- if privacy is defined and privacy.last_updated is defined %}
+LAST_UPDATED: {{ privacy.last_updated }}
+{%- endif %}
