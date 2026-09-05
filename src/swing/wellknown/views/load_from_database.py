@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 
+
+# =============================================================================
+# Docstring
+# =============================================================================
+
 """Load context data from database models."""
 
 import logging
-from datetime import datetime
-from typing import Any
 
 logger = logging.getLogger(__name__)
 

@@ -1,0 +1,56 @@
+# humanstxt.org/
+# The humans responsible for this site
+{% if site and site.name %}# {{ site.name }}{% endif %}
+
+/* TEAM */
+
+{% if team %}
+{% for member in team %}
+    {{ member.role|default("Team Member") }}: {{ member.name }}
+{% if member.site %}
+    Site: {{ member.site }}
+{% endif %}
+{% if member.email %}
+    Email: {{ member.email }}
+{% endif %}
+{% if member.twitter %}
+    Twitter: {{ member.twitter }}
+{% endif %}
+{% if member.location %}
+    Location: {{ member.location }}
+{% endif %}
+
+{% endfor %}
+{% else %}
+    Site: {{ site_url }}
+
+{% endif %}
+
+/* THANKS */
+
+{% if thanks %}
+{% for person in thanks %}
+{% if person is mapping %}
+    {{ person.name }}{% if person.note %} - {{ person.note }}{% endif %}
+
+{% else %}
+    {{ person }}
+
+{% endif %}
+{% endfor %}
+{% else %}
+    Our users and community
+    Open source contributors
+
+{% endif %}
+
+/* SITE */
+
+    Last Update: {{ current_year }}/{{ "%02d"|format(current_month) }}/{{ "%02d"|format(current_day) }}
+    Language: {{ language|default("English") }}
+{% if standards %}
+    Standards: {{ standards|join(", ") }}
+{% endif %}
+{% if software %}
+    Software: {{ software|join(", ") }}
+{% endif %}

@@ -28,13 +28,14 @@ from __future__ import annotations
 
 # Import | Standard Library
 from pkgutil import extend_path
-from typing import MutableSequence
 
 # =============================================================================
 # Variables
 # =============================================================================
 
-__path__: MutableSequence[str] = extend_path(
-    path=__path__,  # type: ignore
+# `__path__` is implicitly declared by mypy for every package, so it must
+# not be re-annotated here (that would be a redefinition).
+__path__ = extend_path(
+    path=__path__,
     name=__name__,
 )

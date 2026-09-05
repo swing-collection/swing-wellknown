@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+
+# =============================================================================
+# Docstring
+# =============================================================================
+
 """Admin for social accounts."""
 
 from django.contrib import admin
@@ -37,11 +42,12 @@ class SocialAccountAdmin(admin.ModelAdmin):
         }),
     )
 
+    @admin.display(description=_("Service"))
     def get_service_display(self, obj):
         """Display service name."""
         return obj.get_service_name()
-    get_service_display.short_description = _("Service")
 
+    @admin.display(description=_("Profile URL"))
     def profile_url_link(self, obj):
         """Display profile URL as link."""
         return format_html(
@@ -49,4 +55,3 @@ class SocialAccountAdmin(admin.ModelAdmin):
             obj.profile_url,
             obj.profile_url[:50] + "..." if len(obj.profile_url) > 50 else obj.profile_url
         )
-    profile_url_link.short_description = _("Profile URL")

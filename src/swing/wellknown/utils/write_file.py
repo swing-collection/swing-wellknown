@@ -1,14 +1,20 @@
 # -*- coding: utf-8 -*-
 
+
+# =============================================================================
+# Docstring
+# =============================================================================
+
 """
 Provides write_file utility function.
 """
 
+from __future__ import annotations
+
 from pathlib import Path
-from typing import Union
 
 
-def write_file(path: Union[str, Path], data: str) -> str:
+def write_file(path: str | Path, data: str) -> str:
     """Write content to a file.
 
     Args:

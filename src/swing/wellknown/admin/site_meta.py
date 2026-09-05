@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+
+# =============================================================================
+# Docstring
+# =============================================================================
+
 """Admin for site metadata."""
 
 from django.contrib import admin
@@ -43,8 +48,8 @@ class SiteMetaAdmin(admin.ModelAdmin):
 
     def changelist_view(self, request, extra_context=None):
         """Redirect to change view if instance exists."""
-        if SiteMeta.objects.exists():
-            obj = SiteMeta.objects.first()
+        obj = SiteMeta.objects.first()
+        if obj is not None:
             from django.shortcuts import redirect
             return redirect("admin:wellknown_sitemeta_change", obj.pk)
         return super().changelist_view(request, extra_context)

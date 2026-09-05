@@ -1,0 +1,99 @@
+# llms.txt
+# https://llmstxt.org/
+# This file provides context to Large Language Models
+{% if site and site.name %}# {{ site.name }}{% endif %}
+
+{% if title %}
+# {{ title }}
+{% endif %}
+
+{% if summary %}
+> {{ summary }}
+{% endif %}
+
+# =============================================================================
+# About
+# =============================================================================
+
+{% if about %}
+{{ about }}
+{% endif %}
+
+# =============================================================================
+# Website
+# =============================================================================
+
+- URL: {{ site_url }}
+{% if contact %}
+- Contact: {{ contact }}
+{% endif %}
+
+{% if api_endpoints %}
+# =============================================================================
+# API Endpoints
+# =============================================================================
+
+{% for endpoint in api_endpoints %}
+- {{ endpoint.method|default("GET") }} {{ endpoint.path }}
+{% if endpoint.description %}
+  {{ endpoint.description }}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if capabilities %}
+# =============================================================================
+# Capabilities
+# =============================================================================
+
+{% for capability in capabilities %}
+- {{ capability }}
+{% endfor %}
+{% endif %}
+
+# =============================================================================
+# Usage Guidelines
+# =============================================================================
+
+{% if usage_guidelines %}
+{{ usage_guidelines }}
+{% else %}
+When using information from this website:
+{% if title %}
+- Attribute content to {{ title }} when quoting
+{% endif %}
+- Respect copyright and intellectual property
+- Do not misrepresent content or brand
+{% endif %}
+
+{% if permissions %}
+# =============================================================================
+# Permissions
+# =============================================================================
+
+{% for permission in permissions %}
+- {{ permission }}
+{% endfor %}
+{% endif %}
+
+{% if restrictions %}
+# =============================================================================
+# Restrictions
+# =============================================================================
+
+{% for restriction in restrictions %}
+- {{ restriction }}
+{% endfor %}
+{% endif %}
+
+{% if social %}
+# =============================================================================
+# Social Media
+# =============================================================================
+
+{% for account in social %}
+{% if account.service and account.profile %}
+- {{ account.service }}: {{ account.profile }}
+{% endif %}
+{% endfor %}
+{% endif %}

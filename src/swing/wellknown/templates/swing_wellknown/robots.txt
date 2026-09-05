@@ -1,0 +1,45 @@
+# robots.txt
+# https://www.robotstxt.org/
+{% if site and site.name %}# {{ site.name }}{% endif %}
+
+# =============================================================================
+# Standard Crawlers
+# =============================================================================
+
+User-agent: *
+{% if allow_all %}
+Allow: /
+{% for path in disallow_paths %}
+Disallow: {{ path }}
+{% endfor %}
+{% else %}
+Disallow: /
+{% for path in allow_paths %}
+Allow: {{ path }}
+{% endfor %}
+{% endif %}
+
+# =============================================================================
+# AI Crawlers
+# =============================================================================
+
+{% for crawler, allowed in ai_crawlers.items() %}
+User-agent: {{ crawler }}
+{% if allowed %}
+Allow: /
+{% else %}
+Disallow: /
+{% endif %}
+
+{% endfor %}
+
+# =============================================================================
+# Sitemaps & Crawl Settings
+# =============================================================================
+
+{% for sitemap in sitemaps %}
+Sitemap: {{ sitemap }}
+{% endfor %}
+{% if crawl_delay %}
+Crawl-delay: {{ crawl_delay }}
+{% endif %}

@@ -5,63 +5,45 @@
 # =============================================================================
 
 """
-Provides Texts Config Class
-==========================
+Swing Well-Known - App Configuration
+======================================
 
+Django app configuration for the swing.wellknown reusable app.
 
 """
 
-
 # =============================================================================
-# Import
+# Imports
 # =============================================================================
 
-# Import | Standard Library
-
-
-# Import | Libraries
+# Import | Django
 from django.apps import AppConfig
-# from django.core.signals import request_finished
 from django.utils.translation import gettext_lazy as _
-
-# Import | Local Modules
 
 
 # =============================================================================
 # Classes
 # =============================================================================
 
-class TextsConfig(AppConfig):
-    """
-    Texts Config Class
-    =================
-    """
 
+class SwingWellKnownConfig(AppConfig):
+    """
+    Swing Well-Known App Configuration
+    ====================================
+
+    Django app configuration for serving well-known files
+    (robots.txt, humans.txt, security.txt, llms.txt, etc.).
+
+    """
 
     # Full Python path to the application
     name = "swing.wellknown"
 
     # Short name for the application
-    label = "wellknown"
+    label = "swing_wellknown"
 
     # Human-readable name for the application
-    verbose_name = _("Texts")
-
-    # Filesystem path to the application directory,
-    # path = "/usr/lib/pythonX.Y/dist-packages/django/contrib/admin"
-
-    # default = True
+    verbose_name = _("Well-Known Files")
 
     # The implicit primary key type to add to models within this app.
     default_auto_field = "django.db.models.BigAutoField"
-
-    # def ready(self):
-    #     """
-    #     Apps Config Ready Function
-    #     """
-
-        # Implicitly connect signal handlers decorated with @receiver.
-        # from .. import signals
-
-        # Explicitly connect a signal handler.
-        # request_finished.connect(signals.my_callback)

@@ -1,20 +1,37 @@
 {
-    "version": "0.2",
-    "language": "en",
-    "words": [
-        "wellknown",
-        "vcard",
-        "ldif",
-        "webmanifest",
-        "browserconfig",
-        "jinja",
-        "urlpatterns",
-        "urlconf",
-        "staticfiles",
-        "llms",
-        "assetlinks",
-        "patreon",
-        "opencollective"
-    ],
-    "ignorePaths": ["**/__pycache__/**", "**/migrations/**", "*.lock"]
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "wellknown",
+    "vcard",
+    "ldif",
+    "webmanifest",
+    "browserconfig",
+    "jinja",
+    "urlpatterns",
+    "urlconf",
+    "staticfiles",
+    "llms",
+    "assetlinks",
+    "patreon",
+    "opencollective",
+    "asgi",
+    "wsgi",
+    "gunicorn",
+    "healthz",
+    "procfile",
+    "pyproject",
+    "codegen",
+    "frontends",
+    "grotesk",
+    "specialisation",
+    "behaviour",
+    "climsim",
+    "proplan"
+  ],
+  "ignorePaths": [
+    "**/__pycache__/**",
+    "**/migrations/**",
+    "*.lock"
+  ]
 }

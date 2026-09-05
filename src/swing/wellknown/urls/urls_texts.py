@@ -25,7 +25,6 @@ Provides Texts URL Config
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import path
 from django.urls.resolvers import URLPattern, URLResolver
-from django.utils.translation import gettext as _
 from django.views.generic.base import RedirectView
 
 # Import | Local Modules

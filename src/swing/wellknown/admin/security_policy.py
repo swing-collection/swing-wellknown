@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+
+# =============================================================================
+# Docstring
+# =============================================================================
+
 """Admin for security policy."""
 
 from django.contrib import admin
@@ -40,8 +45,8 @@ class SecurityPolicyAdmin(admin.ModelAdmin):
 
     def changelist_view(self, request, extra_context=None):
         """Redirect to change view if instance exists."""
-        if SecurityPolicy.objects.exists():
-            obj = SecurityPolicy.objects.first()
+        obj = SecurityPolicy.objects.first()
+        if obj is not None:
             from django.shortcuts import redirect
             return redirect("admin:wellknown_securitypolicy_change", obj.pk)
         return super().changelist_view(request, extra_context)

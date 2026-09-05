@@ -1,0 +1,44 @@
+# security.txt
+# https://securitytxt.org/
+# RFC 9116 - A File Format to Aid in Security Vulnerability Disclosure
+{% if site and site.name %}# {{ site.name }}{% endif %}
+
+# =============================================================================
+# Required Fields (per RFC 9116)
+# =============================================================================
+
+{% for contact_method in contact %}
+Contact: {{ contact_method }}
+{% endfor %}
+Expires: {{ expires }}
+
+# =============================================================================
+# Recommended Fields
+# =============================================================================
+
+{% for uri in canonical %}
+Canonical: {{ uri }}
+{% endfor %}
+{% if preferred_languages %}
+Preferred-Languages: {{ preferred_languages|join(", ") }}
+{% endif %}
+
+# =============================================================================
+# Optional Fields
+# =============================================================================
+
+{% if encryption %}
+Encryption: {{ encryption }}
+{% endif %}
+{% if acknowledgments %}
+Acknowledgments: {{ acknowledgments }}
+{% endif %}
+{% if policy %}
+Policy: {{ policy }}
+{% endif %}
+{% if hiring %}
+Hiring: {{ hiring }}
+{% endif %}
+{% if csaf %}
+CSAF: {{ csaf }}
+{% endif %}

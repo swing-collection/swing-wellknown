@@ -1,17 +1,24 @@
 # -*- coding: utf-8 -*-
 
+
+# =============================================================================
+# Docstring
+# =============================================================================
+
 """
 Provides write_json utility function.
 """
 
+from __future__ import annotations
+
 import json
 from pathlib import Path
-from typing import Any, Union
+from typing import Any
 
 from .write_file import write_file
 
 
-def write_json(path: Union[str, Path], data: dict[str, Any]) -> str:
+def write_json(path: str | Path, data: dict[str, Any]) -> str:
     """Write data as JSON to a file.
 
     Args:

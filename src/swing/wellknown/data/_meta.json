@@ -15,7 +15,7 @@
     "tags": {
         "ama_id":           "",
         "gsc_token":        "",
-        "gan_tag":          "UA-157968640-1",
+        "gan_tag":          "",
         "gas_tag":          "",
         "gas_txt":          "",
         "gas_seller_id":    "",
@@ -27,7 +27,7 @@
         "contact": 
         {
             "name":         "Contact",
-            "form_id":      "1KqB-wco2XBmlrN-u7a5SC3dYcaYn8at_9D9E8BYvN48",
+            "form_id":      "",
             "fields" :       [
                 {
                     "name":         "Name",
@@ -36,8 +36,8 @@
                     "value":        "",
                     "placeholder":  "",
                     "required":     true,
-                    "field_id":     "841380781",
-                    "entry_id":     "1959212856"
+                    "field_id":     "",
+                    "entry_id":     ""
                 },
                 {
                     "name":         "Email",
@@ -46,8 +46,8 @@
                     "value":        "",
                     "placeholder":  "",
                     "required":     true,
-                    "field_id":     "1726358591",
-                    "entry_id":     "934054986"
+                    "field_id":     "",
+                    "entry_id":     ""
                 },
                 {
                     "name":         "Subject",
@@ -56,8 +56,8 @@
                     "value":        "",
                     "placeholder":  "",
                     "required":     true,
-                    "field_id":     "1926073414",
-                    "entry_id":     "943849977"
+                    "field_id":     "",
+                    "entry_id":     ""
                 },
                 {
                     "name":         "Message",
@@ -66,15 +66,15 @@
                     "value":        "",
                     "placeholder":  "",
                     "required":     true,
-                    "field_id":     "1637481045",
-                    "entry_id":     "281284498"
+                    "field_id":     "",
+                    "entry_id":     ""
                 }
             ]
         },
         "newsletter":
         {
             "name":         "Newsletter",
-            "form_id":      "17u6f8LSNhybLujl8S1xlP6z7rVFSeq0znEFQOnoqitQ",
+            "form_id":      "",
             "fields" :      [
                 {
                     "name":         "Email",
@@ -83,8 +83,8 @@
                     "value":        "",
                     "placeholder":  "",
                     "required":     true,
-                    "field_id":     "1448132877",
-                    "entry_id":     "17724438"
+                    "field_id":     "",
+                    "entry_id":     ""
                 }
             ]
         }

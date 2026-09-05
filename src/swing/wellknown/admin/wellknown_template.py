@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+
+# =============================================================================
+# Docstring
+# =============================================================================
+
 """Admin for well-known templates with code editor."""
 
 from django.contrib import admin
@@ -56,6 +61,7 @@ class WellKnownTemplateAdmin(admin.ModelAdmin):
         },
     }
 
+    @admin.display(description=_("Preview"))
     def preview_link(self, obj):
         """Link to preview the template."""
         # Map template names to URLs
@@ -90,7 +96,6 @@ class WellKnownTemplateAdmin(admin.ModelAdmin):
             '<a href="{}" target="_blank" rel="noopener">Preview →</a>',
             url
         )
-    preview_link.short_description = _("Preview")
 
     class Media:
         css = {

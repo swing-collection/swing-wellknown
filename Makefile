@@ -65,7 +65,10 @@ export MKDOCS_PORT
 # Use poetry run to ensure correct virtual environment
 
 PYTHON := poetry run python
-PYTEST := poetry run pytest
+# Invoked as `python -m pytest` (not the `pytest` console script) so the
+# current directory is on sys.path before pytest-django's early settings
+# import runs; otherwise `import tst.settings` fails with ModuleNotFoundError.
+PYTEST := poetry run python -m pytest
 NPM := npm
 
 
@@ -140,13 +143,13 @@ clean-ports: ## Kill processes on development ports
 # =============================================================================
 
 test: ## Run tests with coverage
-	$(PYTEST) $(TST_DIR)/
+	$(PYTEST)
 
 test-fast: ## Run tests without coverage (faster)
-	$(PYTEST) $(TST_DIR)/ --no-cov -x
+	$(PYTEST) --no-cov -x
 
 test-verbose: ## Run tests with verbose output
-	$(PYTEST) $(TST_DIR)/ -v --no-cov
+	$(PYTEST) -v --no-cov
 
 
 # =============================================================================

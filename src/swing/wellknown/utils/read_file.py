@@ -1,14 +1,20 @@
 # -*- coding: utf-8 -*-
 
+
+# =============================================================================
+# Docstring
+# =============================================================================
+
 """
 Provides read_file utility function.
 """
 
+from __future__ import annotations
+
 from pathlib import Path
-from typing import Union
 
 
-def read_file(path: Union[str, Path]) -> str:
+def read_file(path: str | Path) -> str:
     """Read content from a file.
 
     Args:
